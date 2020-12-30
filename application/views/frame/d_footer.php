@@ -2,12 +2,13 @@
 <div class="nk-footer nk-footer-fluid bg-lighter">
     <div class="container-xl">
         <div class="nk-footer-wrap">
-            <div class="nk-footer-copyright"> &copy; 2020 PT GETIT INDONESIA. Copyright</div>
+            <div class="nk-footer-copyright"> &copy; 2020 GetId </div>
             <div class="nk-footer-links">
                 <ul class="nav nav-sm">
-                    <li class="nav-item"><a class="nav-link" href="#">Persyaratan dan Ketentuan</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                            href="<?php echo site_url('Help/terms_policy');?>">Persyaratan dan Ketentuan</a></li>
                     <!-- <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="#">Bantuan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url('Help');?>">Bantuan</a></li>
                 </ul>
             </div>
         </div>
@@ -37,7 +38,7 @@
                                     here</a></span> -->
                     </div>
                     <div class="nk-modal-action">
-                        <a href="#" class="btn btn-lg btn-mw btn-primary" data-dismiss="modal">OK</a>
+                        <a href="#" class="btn btn-lg btn-mw btn-primary" data-dismiss="modal">Oke</a>
                     </div>
                 </div>
             </div><!-- .modal-body -->
@@ -61,10 +62,10 @@
                         <p class="lead">
                             <?php echo json_decode(json_encode($this->session->flashdata('message')))->message; ?>
                         </p>
-                        <p class="text-soft">Jika kamu memerlukan bantuan hubungi kami di (813) 86111-891.</p>
+                        <!-- <p class="text-soft">Jika kamu memerlukan bantuan hubungi kami di (813) 86111-891.</p> -->
                     </div>
                     <div class="nk-modal-action mt-5">
-                        <a href="#" class="btn btn-lg btn-mw btn-light" data-dismiss="modal">Return</a>
+                        <a href="#" class="btn btn-lg btn-mw btn-light" data-dismiss="modal">Kembali</a>
                     </div>
                 </div>
             </div><!-- .modal-body -->
@@ -83,7 +84,7 @@
 <!-- JavaScript -->
 <?php if($this->session->flashdata('message') != NULL) {
       $status = json_decode(json_encode($this->session->flashdata('message')))->status;
-      if($status == '1'){ ?>
+      if($status == "1"){ ?>
 <script type="text/javascript">
 $(window).on('load', function() {
     $('#successmodal').modal('show');
@@ -98,10 +99,16 @@ $(window).on('load', function() {
 <?php }} ?>
 
 <script>
+$('.date-picker').datepicker({
+    autoclose: true,
+    format: "yyyy-mm-dd",
+    orientation: "bottom auto"
+});
+
 function del_confirm() {
     var x = confirm("Apakah anda akan menghapus data ini?");
     if (x) {
-        localStorage.clear();
+        // localStorage.clear();
         return true;
     } else {
         return false;
@@ -111,7 +118,7 @@ function del_confirm() {
 function act_confirm() {
     var x = confirm("Apakah anda akan mengerjakan perintah tersebut?");
     if (x) {
-        localStorage.clear();
+        // localStorage.clear();
         return true;
     } else {
         return false;

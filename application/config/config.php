@@ -37,7 +37,7 @@ $HOST = (
     ((isset($_SERVER['HTTP_X_FORWARDED_HOST']) && $_SERVER['HTTP_X_FORWARDED_HOST'] == "182.253.209.204/") ? "://182.253.209.204/rka-web/" :
     ((isset($_SERVER['HTTP_X_FORWARDED_HOST']) && $_SERVER['HTTP_X_FORWARDED_HOST'] == "www.gratika.co.id") ? "://www.gratika.co.id/rka-web/" : 
     ((isset($_SERVER['HTTP_X_FORWARDED_HOST']) && $_SERVER['HTTP_X_FORWARDED_HOST'] == "10.0.1.90/") ? "://10.0.1.90/rka-web/" : 
-    "://localhost/web-getit/")))))
+    "://localhost/web-getid/")))))
 );
 $config['base_url'] .= $HOST;
 
@@ -566,14 +566,14 @@ if (LIVE == "production") {
     $config['url-simpok'] = "http://10.0.1.90/api_grtk/index.php/web_service/api";
     $config['url-corelogbook'] = "http://10.0.1.90:8002/coreapi/core-logbook";
     $config['url-corerka'] = "http://10.0.1.90:8006/core-rka";
-    $config['url-getit'] = "http://13.229.215.2:13001/appreq/service.asmx";
+    $config['url-getid'] = "http://13.229.215.2:13001/appreq/service.asmx";
     $config['url-trx'] = "http://13.229.215.2:13001/tspreq/rpc.aspx";
 } else {
     $config['url-lumen']='http://www.gratika.co.id/apigrtk2';
     $config['url-simpok'] = "http://www.gratika.co.id/apigrtk/index.php/web_service/api";
     $config['url-corelogbook'] = "http://aplikasi2.gratika.id/coreapi/core-logbook";
     $config['url-corerka'] = "http://aplikasi2.gratika.id/corerka/core-rka";
-    $config['url-getit'] = "http://13.229.215.2:13001/appreq/service.asmx";
+    $config['url-getid'] = "http://13.229.215.2:13001/appreq/service.asmx";
     $config['url-trx'] = "http://13.229.215.2:13001/tspreq/rpc.aspx";
 }
 

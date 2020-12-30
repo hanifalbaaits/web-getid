@@ -1,9 +1,10 @@
 <?php
-class APIGetIt extends CI_Model{
+class APIGetid extends CI_Model{
     function __construct(){
         parent::__construct();
         $this->load->library('session');
-        $this->url = $this->config->item('url-getit');
+        $this->url = $this->config->item('url-getid');
+        $this->url_trx = $this->config->item('url-trx');
         $this->session_key = $this->config->item('session-key');
     }
 
@@ -162,8 +163,8 @@ class APIGetIt extends CI_Model{
               <guid>'.$guid.'</guid>
               <storename>'.$fullname.'</storename>
               <address>'.$address.'</address>
-              <city></city>
-              <province></province>
+              <city>Jakarta</city>
+              <province>Jakarta</province>
               <region>test</region>
               <type>mobile apps</type>
               <telephone>'.$telephone.'</telephone>
@@ -192,7 +193,7 @@ class APIGetIt extends CI_Model{
         curl_close($ch);
         try {
             $res = new SimpleXMLElement($data);
-            return $res->xpath('//soap:Body');
+            return $res->xpath('//Table');
         } catch (\Throwable $th) {
             return null;
         }
@@ -370,22 +371,22 @@ class APIGetIt extends CI_Model{
         curl_close($ch);
         try {
             $res = new SimpleXMLElement($data);
-            return $res->xpath('//soap:Body');
+            return $res->xpath('//Table');
         } catch (\Throwable $th) {
             return null;
         }
     }
 
-    function topup_request($username){
+    function topup_request($username,$saldo){
         $url = $this->url;
         $xml =
         '<?xml version="1.0" encoding="utf-8"?>
         <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
           <soap:Body>
             <Topup_Balance_Request xmlns="http://tempuri.org/">
-              <storeid>hanifalbaaits20@gmail.com</storeid>
+              <storeid>'.$username.'</storeid>
               <idtransfer>01014</idtransfer>
-              <nominaltransfer>100000</nominaltransfer>
+              <nominaltransfer>'.$saldo.'</nominaltransfer>
               <type>bc369c4e-68ba-43c1-9eda-a2708e63ff86</type>
             </Topup_Balance_Request>
           </soap:Body>
@@ -408,7 +409,7 @@ class APIGetIt extends CI_Model{
         curl_close($ch);
         try {
             $res = new SimpleXMLElement($data);
-            return $res->xpath('//soap:Body');
+            return $res->xpath('//Table');
         } catch (\Throwable $th) {
             return null;
         }
@@ -509,9 +510,10 @@ class APIGetIt extends CI_Model{
         curl_close($ch);
         try {
             $res = new SimpleXMLElement($data);
-            return $res->xpath('//soap:Body');
+            // return $res->xpath('//soap:Body');
+            return $res->xpath('//Table');
         } catch (\Throwable $th) {
-            return null;
+            return [];
         }
     }
 
@@ -546,20 +548,20 @@ class APIGetIt extends CI_Model{
         curl_close($ch);
         try {
             $res = new SimpleXMLElement($data);
-            return $res->xpath('//soap:Body');
+            return $res->xpath('//Table');
         } catch (\Throwable $th) {
-            return null;
+            return [];
         }
     }
 
-    function get_deposito_last(){
+    function get_deposito_last($username){
         $url = $this->url;
         $xml =
         '<?xml version="1.0" encoding="utf-8"?>
         <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
           <soap:Body>
             <ReportLast_StockDepositHistory_byStoreDate xmlns="http://tempuri.org/">
-              <storeid>tsp15</storeid>
+              <storeid>'.$username.'</storeid>
             </ReportLast_StockDepositHistory_byStoreDate>
           </soap:Body>
         </soap:Envelope>';
@@ -581,22 +583,22 @@ class APIGetIt extends CI_Model{
         curl_close($ch);
         try {
             $res = new SimpleXMLElement($data);
-            return $res->xpath('//soap:Body');
+            return $res->xpath('//Table');
         } catch (\Throwable $th) {
-            return null;
+            return [];
         }
     }
 
-    function get_deposito_search(){
+    function get_deposito_search($username, $date1, $date2){
         $url = $this->url;
         $xml =
         '<?xml version="1.0" encoding="utf-8"?>
         <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
           <soap:Body>
             <Report_StockDepositHistory_byStoreDate xmlns="http://tempuri.org/">
-              <storeid>tsp15</storeid>
-              <begindate>20201201</begindate>
-              <enddate>20201201</enddate>
+              <storeid>'.$username.'</storeid>
+              <begindate>'.$date1.'</begindate>
+              <enddate>'.$date2.'</enddate>
             </Report_StockDepositHistory_byStoreDate>
           </soap:Body>
         </soap:Envelope>';
@@ -618,10 +620,82 @@ class APIGetIt extends CI_Model{
         curl_close($ch);
         try {
             $res = new SimpleXMLElement($data);
-            return $res->xpath('//soap:Body');
+            return $res->xpath('//Table');
         } catch (\Throwable $th) {
-            return null;
+            return [];
         }
     }
+
+    function transaksi_execute($username,$time,$pass,$nomor,$produk){
+      $url = $this->url_trx;
+      $xml =
+      '<?xml version="1.0" encoding="iso-8859-1"?>
+      <methodCall>
+          <methodName>topUpRequest</methodName>
+          <params>
+              <param>
+                  <value>
+                      <struct>
+                          <member>
+                              <name>MSISDN</name>
+                              <value>
+                                  <string>'.$username.'</string>
+                              </value>
+                          </member>
+                          <member>
+                              <name>REQUESTID</name>
+                              <value>
+                                  <string>'.$time.'</string>
+                              </value>
+                          </member>
+                          <member>
+                              <name>PIN</name>
+                              <value>
+                                  <string>'.$pass.'</string>
+                              </value>
+                          </member>
+                          <member>
+                              <name>NOHP</name>
+                              <value>
+                                  <string>'.$nomor.'</string>
+                              </value>
+                          </member>
+                          <member>
+                              <name>NOM</name>
+                              <value>
+                                  <string>'.$produk.'</string>
+                              </value>
+                          </member>
+                      </struct>
+                  </value>
+              </param>
+          </params>
+      </methodCall>';
+
+      $headers = array(
+      "Content-type: text/xml",
+      "Content-length: " . strlen($xml),
+      "Connection: close",
+      );
+
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL,$url);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+      curl_setopt($ch, CURLOPT_POST, true);
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+      $data = curl_exec($ch);
+      curl_close($ch);
+
+      // echo $data;
+
+      try {
+          $res = new SimpleXMLElement($data);
+          return $res->xpath('//soap:Body');
+      } catch (\Throwable $th) {
+          return null;
+      }
+  }
 
 }

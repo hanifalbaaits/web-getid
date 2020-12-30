@@ -11,13 +11,10 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets_custom/pavicon.png">
     <!-- Page Title  -->
-    <title>Login GetId - Aplikasi Jual Pulsa dan Paket Data termurah</title>
+    <title>Buat Akun | GetId - Aplikasi Jual Pulsa dan Paket Data termurah</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dashlite.css?ver=1.9.2">
-    <link id="skin-default" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/theme.css?ver=1.9.2">
-
-    <!-- JQUERY -->
-    <script src="<?php echo base_url(). "js/" ?>vendors/jquery/jquery.js"></script>
+    <link id="skin" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/theme.css?ver=1.9.2">
 </head>
 
 <body class="nk-body bg-white npc-general pg-auth">
@@ -29,14 +26,15 @@
                 <!-- content @s -->
                 <div class="nk-content ">
                     <div class="nk-split nk-split-page nk-split-md">
-                        <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white">
+                        <div
+                            class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white w-lg-45">
                             <div class="absolute-top-right d-lg-none p-3 p-sm-5">
-                                <a href="#" class="toggle btn-white btn btn-icon btn-light" data-target="athPromo"><em
+                                <a href="#" class="toggle btn btn-white btn-icon btn-light" data-target="athPromo"><em
                                         class="icon ni ni-info"></em></a>
                             </div>
                             <div class="nk-block nk-block-middle nk-auth-body">
                                 <div class="brand-logo pb-5">
-                                    <a href="#" class="logo-link">
+                                    <a href="html/index.html" class="logo-link">
                                         <img class="logo-light logo-img logo-img-lg"
                                             src="<?php echo base_url(); ?>assets_custom/nama_berwarna.png"
                                             srcset="<?php echo base_url(); ?>assets_custom/nama_berwarna.png 2x"
@@ -49,57 +47,67 @@
                                 </div>
                                 <div class="nk-block-head">
                                     <div class="nk-block-head-content">
-                                        <!-- <h5 class="nk-block-title">Masuk</h5> -->
+                                        <h5 class="nk-block-title">Buat Akun</h5>
                                         <div class="nk-block-des">
-                                            <!-- <p>Access the SAPA using your email and passcode.</p> -->
+                                            <!-- <p>Create New Dashlite Account</p> -->
                                         </div>
                                     </div>
                                 </div><!-- .nk-block-head -->
                                 <form class="form-horizontal form-validate is-alter" method="post"
-                                    action="<?php echo site_url('Login/user_login')?>">
+                                    action="<?php echo site_url('Login/user_register')?>">
                                     <div class="form-group">
-                                        <div class="form-label-group">
-                                            <label class="form-label" for="default-01">Email</label>
-                                            <!-- <a class="link link-primary link-sm" tabindex="-1" href="#">Need Help?</a> -->
-                                        </div>
-                                        <input type="text" class="form-control form-control-lg" name='username'
-                                            id='username' required placeholder="masukan email anda">
-                                    </div><!-- .foem-group -->
+                                        <label class="form-label" for="name">Nama Lengkap</label>
+                                        <input type="text" class="form-control form-control-lg" id="name" name="name"
+                                            placeholder="Masukan nama lengkap" required>
+                                    </div>
                                     <div class="form-group">
-                                        <div class="form-label-group">
-                                            <label class="form-label" for="password">Password</label>
-                                            <!-- <a class="link link-primary link-sm" tabindex="-1"
-                                                href="html/pages/auths/auth-reset.html">Forgot Code?</a> -->
-                                        </div>
+                                        <label class="form-label" for="email">Email</label>
+                                        <input type="email" class="form-control form-control-lg" id="email" name="email"
+                                            placeholder="Masukan alamat email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="password">Kata Sandi</label>
                                         <div class="form-control-wrap">
                                             <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch"
                                                 data-target="password">
                                                 <em class="passcode-icon icon-show icon ni ni-eye"></em>
                                                 <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                                             </a>
-                                            <input type="password" class="form-control form-control-lg" name="password"
-                                                id='password' required placeholder="masukan password anda">
+                                            <input type="password" class="form-control form-control-lg" id="password"
+                                                name="password" placeholder="Masukan Kata Sandi" required>
                                         </div>
-                                    </div><!-- .foem-group -->
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-lg btn-primary btn-block">Masuk</button>
                                     </div>
-                                </form><!-- form -->
-                                <div class="form-note-s2 pt-4"> Baru pertama kali ? <a
-                                        href="<?php echo site_url('Login/Register')?>">Buat Akun</a>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-control-xs custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkbox">
+                                            <!-- <label class="custom-control-label" for="checkbox">Saya Setuju dengan <a
+                                                    tabindex="-1"
+                                                    href="<?php echo site_url('Help/terms_policy');?>">Kebijakan</a>
+                                                &amp; <a tabindex="-1"
+                                                    href="<?php echo site_url('Help/terms_policy');?>">Syarat dan
+                                                    Ketentuan</a></label> -->
+                                            <label class="custom-control-label" for="checkbox">Saya Setuju dengan
+                                                <a tabindex="-1"
+                                                    href="<?php echo site_url('Help/terms_policy');?>">Syarat &amp;
+                                                    Ketentuan</a></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-lg btn-primary btn-block"
+                                            onclick="return check_privacy()">Daftar</button>
+                                    </div>
+                                </form>
+                                <div class="form-note-s2 pt-4"> Telah memiliki akun ? <a
+                                        href="<?php echo site_url('Login');?>"><strong>Masuk GetId</strong></a>
                                 </div>
                                 <div class="text-center pt-4 pb-3">
                                     <h6 class="overline-title overline-title-sap"><span>Atau</span></h6>
                                 </div>
-                                <ul class="nav justify-center gx-4">
+                                <ul class="nav justify-center gx-8">
                                     <!-- <li class="nav-item"><a class="nav-link" href="#">Facebook</a></li> -->
                                     <li class="nav-item"><a class="nav-link"
-                                            href="<?php echo site_url('Login/google')?>">Login dengan Google</a></li>
+                                            href="<?php echo site_url('Login/google');?>">Login dengan Google</a></li>
                                 </ul>
-                                <!-- <div class="text-center mt-5">
-                                    <span class="fw-500">I don't have an account? <a href="#">Try 15 days
-                                            free</a></span>
-                                </div> -->
                             </div><!-- .nk-block -->
                             <div class="nk-block nk-auth-footer">
                                 <div class="nk-block-between">
@@ -123,42 +131,42 @@
                                                 <ul class="language-list">
                                                     <li>
                                                         <a href="#" class="language-item">
-                                                            <img src="<?php echo base_url(); ?>images/flags/english.png"
-                                                                alt="" class="language-flag">
+                                                            <img src="./images/flags/english.png" alt=""
+                                                                class="language-flag">
                                                             <span class="language-name">English</span>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#" class="language-item">
-                                                            <img src="<?php echo base_url(); ?>images/flags/spanish.png"
-                                                                alt="" class="language-flag">
+                                                            <img src="./images/flags/spanish.png" alt=""
+                                                                class="language-flag">
                                                             <span class="language-name">Español</span>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#" class="language-item">
-                                                            <img src="<?php echo base_url(); ?>images/flags/french.png"
-                                                                alt="" class="language-flag">
+                                                            <img src="./images/flags/french.png" alt=""
+                                                                class="language-flag">
                                                             <span class="language-name">Français</span>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#" class="language-item">
-                                                            <img src="<?php echo base_url(); ?>images/flags/turkey.png"
-                                                                alt="" class="language-flag">
+                                                            <img src="./images/flags/turkey.png" alt=""
+                                                                class="language-flag">
                                                             <span class="language-name">Türkçe</span>
                                                         </a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </li> -->
-                                    </ul><!-- .nav -->
+                                    </ul><!-- nav -->
                                 </div>
                                 <div class="mt-3">
                                     <p>&copy; 2020 GetId</p>
                                 </div>
-                            </div><!-- .nk-block -->
-                        </div><!-- .nk-split-content -->
+                            </div><!-- nk-block -->
+                        </div><!-- nk-split-content -->
                         <div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right"
                             data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true">
                             <div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto">
@@ -220,7 +228,7 @@
                                 <div class="slider-arrows"></div>
                             </div><!-- .slider-wrap -->
                         </div><!-- .nk-split-content -->
-                    </div><!-- .nk-split -->
+                    </div><!-- nk-split -->
                 </div>
                 <!-- wrap @e -->
             </div>
@@ -229,7 +237,6 @@
         <!-- main @e -->
     </div>
     <!-- app-root @e -->
-
     <!-- MODAL -->
     <!-- Modal Success -->
     <div class="modal fade" tabindex="-1" id="successmodal">
@@ -283,10 +290,29 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+    function check_privacy() {
+        let check = false;
+        if ($('#checkbox').is(":checked")) {
+            check = true;
+        }
+
+        if (check == false) {
+            alert('Privacy and Policy must be checked');
+            return false;
+        } else {
+            return act_confirm();
+        }
+    }
+    </script>
+
+
+
+
     <!-- JavaScript -->
     <?php if($this->session->flashdata('message') != NULL) {
       $status = json_decode(json_encode($this->session->flashdata('message')))->status;
-      if($status == '1'){ ?>
+      if($status == "1"){ ?>
     <script type="text/javascript">
     $(window).on('load', function() {
         $('#successmodal').modal('show');
@@ -300,6 +326,7 @@
     </script>
     <?php }} ?>
 
+    <!-- JavaScript -->
     <script src="<?php echo base_url(); ?>assets/js/bundle.js?ver=1.9.2"></script>
     <script src="<?php echo base_url(); ?>assets/js/scripts.js?ver=1.9.2"></script>
 

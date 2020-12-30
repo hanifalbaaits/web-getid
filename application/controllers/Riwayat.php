@@ -11,21 +11,52 @@ class Riwayat extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->library('session');
         $this->session_key = $this->config->item('session-key');
-        $this->load->model("APICoreRKA");
-        $this->url_corerka = $this->config->item('url-corerka');
-        $this->url = $this->config->item('url-corerka');
+        $this->load->model("APIGetid");
+        // $this->respon_null = "There was no response from the server. Please Contact Administrator!";
+        $this->respon_null = "Tidak ada tanggapan dari server. Silahkan hubungi admin.";
+        $this->respon_session = "Session berakhir. Login terlebih dahulu.";
 
-        if($this->session->userdata('logcode') != $this->session_key){
-            $this->session->set_flashdata('message', " Login Terlebih dahulu! ");
+        if($this->session->userdata('logcode') !=  $this->session_key){
+            $array=array('status' => '0','message' => $this->respon_session);
+            $this->session->set_flashdata('message', $array);
             redirect('login');
         }
     }
 
     function transaksi(){  
-        $pesan = []; $nmrole = "";
-        $data["notif"] = $pesan;
-        $data["nmrole"] = $nmrole;
+        $guid = $this->session->userdata('guid');
+        $username = $this->session->userdata('storeid');
+        $tgl_mulai = $this->input->get('tgl_mulai');
+        $tgl_akhir = $this->input->get('tgl_akhir');
+        $respon = $this->APIGetid->getSaldoByUsername($username);
+        
+        if ($tgl_mulai != null && $tgl_akhir != null) {
+            $tgl_mulai = date("Ymd",strtotime($tgl_mulai));
+            $tgl_akhir = date("Ymd",strtotime($tgl_akhir));       
+            $respon1 = $this->APIGetid->get_transaction_search($username,$tgl_mulai,$tgl_akhir);
+            $msg = "Pencarian transaksi dari tanggal ".date("d M Y",strtotime($tgl_mulai))." sampai ".date("d M Y",strtotime($tgl_akhir));
+            
+        } else {
+            $respon1 = $this->APIGetid->get_transaction_last($username);
+            $msg = "List Transaksi Terakhir";
+        }
+
+        if ($respon == null) {
+            $array=array('status' => '0','message' => 'API not respon. Please Contact Administrator!');
+            $this->session->set_flashdata('message', $array);
+            $this->session->sess_destroy();
+            redirect('login', 'refresh');
+        }
+
+        $saldo = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
+        $last_transaction = json_decode(json_encode($respon1));
+
+        $data['saldo'] = (int) $saldo;
+        $data['data'] = $last_transaction;
+        $data['msg'] = $msg;             
         $this->load->view('frame/a_header');
         $this->load->view('frame/b_nav',$data);
         $this->load->view('page/riwayat/list_transaksi',$data);
@@ -33,9 +64,42 @@ class Riwayat extends CI_Controller{
     }
 
     function deposito(){  
-        $pesan = []; $nmrole = "";
-        $data["notif"] = $pesan;
-        $data["nmrole"] = $nmrole;
+        $guid = $this->session->userdata('guid');
+        $username = $this->session->userdata('storeid');
+        $tgl_mulai = $this->input->get('tgl_mulai');
+        $tgl_akhir = $this->input->get('tgl_akhir');
+        $respon = $this->APIGetid->getSaldoByUsername($username);
+        
+        $flg = true;
+        if ($tgl_mulai != null && $tgl_akhir != null) {
+            $flg = false;
+            $tgl_mulai = date("Ymd",strtotime($tgl_mulai));
+            $tgl_akhir = date("Ymd",strtotime($tgl_akhir));       
+            $respon1 = $this->APIGetid->get_deposito_search($username,$tgl_mulai,$tgl_akhir);
+            $msg = "Pencarian Deposito dari tanggal ".date("d M Y",strtotime($tgl_mulai))." sampai ".date("d M Y",strtotime($tgl_akhir));
+            
+        } else {
+            $respon1 = $this->APIGetid->get_deposito_last($username);
+            $msg = "List Deposito Terakhir";
+        }
+
+        if ($respon == null) {
+            $array=array('status' => '0','message' => 'API not respon. Please Contact Administrator!');
+            $this->session->set_flashdata('message', $array);
+            $this->session->sess_destroy();
+            redirect('login', 'refresh');
+        }
+
+        $saldo = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
+        $last_deposito = json_decode(json_encode($respon1));
+        $data['saldo'] = (int) $saldo;
+        $data['data'] = $last_deposito;
+        $data['msg'] = $msg; 
+        $data['flg'] = $flg; 
+
+        // var_dump($last_deposito);
+        // exit;
+        
         $this->load->view('frame/a_header');
         $this->load->view('frame/b_nav',$data);
         $this->load->view('page/riwayat/list_deposito',$data);

@@ -8,24 +8,21 @@
              </div>
              <div class="nk-header-brand">
                  <a href="<?php echo site_url("home"); ?>" class="logo-link">
-                     <!-- <img class="logo-light logo-img" src="<?php echo base_url(); ?>images/logo.png"
-                         srcset="<?php echo base_url(); ?>images/logo2x.png 2x" alt="logo">
-                     <img class="logo-dark logo-img" src="<?php echo base_url(); ?>images/logo-dark.png"
-                         srcset="<?php echo base_url(); ?>images/logo-dark2x.png 2x" alt="logo-dark"> -->
-                     <img class="logo-light logo-img" src="<?php echo base_url(); ?>images/SAPA5.jpg"
-                         srcset="<?php echo base_url(); ?>images/SAPA5.jpg 2x" alt="logo">
-                     <img class="logo-dark logo-img" src="<?php echo base_url(); ?>images/SAPA5.jpg"
-                         srcset="<?php echo base_url(); ?>images/SAPA5.jpg" alt="logo-dark">
+                     <img class="logo-light logo-img" src="<?php echo base_url(); ?>assets_custom/nama_putih.png"
+                         srcset="<?php echo base_url(); ?>assets_custom/nama_putih.png 2x" alt="logo">
+                     <img class="logo-dark logo-img" src="<?php echo base_url(); ?>assets_custom/nama_putih.png"
+                         srcset="<?php echo base_url(); ?>assets_custom/nama_putih.png 2x" alt="logo-dark">
                  </a>
              </div><!-- .nk-header-brand -->
              <div class="nk-header-menu" data-content="headerNav">
                  <div class="nk-header-mobile">
                      <div class="nk-header-brand">
                          <a href="<?php echo site_url("home"); ?>" class="logo-link">
-                             <img class="logo-light logo-img" src="<?php echo base_url(); ?>images/logo.png"
-                                 srcset="<?php echo base_url(); ?>images/logo2x.png 2x" alt="logo">
-                             <img class="logo-dark logo-img" src="<?php echo base_url(); ?>images/logo-dark.png"
-                                 srcset="<?php echo base_url(); ?>images/logo-dark2x.png 2x" alt="logo-dark">
+                             <img class="logo-light logo-img"
+                                 src="<?php echo base_url(); ?>assets_custom/nama_putih.png"
+                                 srcset="<?php echo base_url(); ?>assets_custom/nama_putih.png 2x" alt="logo">
+                             <img class="logo-dark logo-img" src="<?php echo base_url(); ?>assets_custom/nama_putih.png"
+                                 srcset="<?php echo base_url(); ?>assets_custom/nama_putih.png 2x" alt="logo-dark">
                          </a>
                      </div>
                      <div class="nk-menu-trigger mr-n2">
@@ -170,7 +167,8 @@
                                  </div>
                                  <div class="user-info d-none d-xl-block">
                                      <!-- <div class="user-status">Administrator</div> -->
-                                     <div class="user-name dropdown-indicator">Abu Bin Ishityak</div>
+                                     <div class="user-name dropdown-indicator">
+                                         <?php echo $this->session->userdata('storename'); ?></div>
                                  </div>
                              </div>
                          </a>
@@ -182,8 +180,10 @@
                                          <em class="icon ni ni-user-alt"></em>
                                      </div>
                                      <div class="user-info">
-                                         <span class="lead-text">Abu Bin Ishtiyak</span>
-                                         <span class="sub-text">info@softnio.com</span>
+                                         <span
+                                             class="lead-text"><?php echo $this->session->userdata('storename'); ?></span>
+                                         <span
+                                             class="sub-text"><?php echo $this->session->userdata('storeid'); ?></span>
                                      </div>
                                      <!-- <div class="user-action">
                                          <a class="btn btn-icon mr-n2" href="html/invest/profile-setting.html"><em
@@ -193,7 +193,7 @@
                              </div>
                              <div class="dropdown-inner user-account-info">
                                  <h6 class="overline-title-alt">Saldo Saat Ini</h6>
-                                 <div class="user-balance"><small class="currency currency-usd">Rp</small>1.000.000 ,-
+                                 <div class="user-balance"><?php echo "Rp ".number_format($saldo, 0, ',', '.'); ?>
                                  </div>
                                  <!-- <div class="user-balance-sub">Locked <span>15,495.39 <span
                                              class="currency currency-usd">USD</span></span></div>
@@ -203,7 +203,12 @@
                              <div class="dropdown-inner">
                                  <ul class="link-list">
                                      <li><a href="<?php echo site_url("profile"); ?>"><em
-                                                 class="icon ni ni-user-alt"></em><span>Lihat Profile</span></a></li>
+                                                 class="icon ni ni-user-alt"></em>
+                                             <span>Lihat Profile</span></a>
+                                     </li>
+                                     <li><a href="#" data-toggle="modal" data-target="#modalGP"><em
+                                                 class="icon ni ni-setting-alt"></em><span>Ubah Kata
+                                                 Sandi</span></a></li>
                                      <!-- <li><a href="html/invest/profile-setting.html"><em
                                                  class="icon ni ni-setting-alt"></em><span>Account
                                                  Setting</span></a></li>
@@ -226,3 +231,47 @@
      </div><!-- .container-fliud -->
  </div>
  <!-- main header @e -->
+
+ <!-- Modal Form -->
+ <div class="modal fade" tabindex="-1" id="modalGP">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title">Ubah Kata Sandi</h5>
+                 <a href="" class="close" data-dismiss="modal" aria-label="Close">
+                     <em class="icon ni ni-cross"></em>
+                 </a>
+             </div>
+             <div class="modal-body">
+                 <form data-parsley-validate class="form-group form-validate is-alter" method="post"
+                     enctype="multipart/form-data" action="<?php echo site_url(). "/profile/ganti_password" ?>">
+                     <div class="form-group">
+                         <label class="form-label" for="full-name">Kata Sandi saat ini</label>
+                         <div class="form-control-wrap">
+                             <input type="password" class="form-control" name="gp_password_lama" required>
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <label class="form-label" for="email-address">Kata Sandi Baru</label>
+                         <div class="form-control-wrap">
+                             <input type="password" class="form-control" name="gp_password_baru" required>
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <label class="form-label" for="phone-no">Konfirmasi Sandi Baru</label>
+                         <div class="form-control-wrap">
+                             <input type="password" class="form-control" name="gp_konfirmasi" required>
+                         </div>
+                     </div>
+                     <div class="form-group" style="float:right">
+                         <button type="submit" class="btn btn-lg btn-primary" onclick="return act_confirm()">Ubah
+                             Password</button>
+                     </div>
+                 </form>
+             </div>
+             <!-- <div class="modal-footer bg-light">
+                 <span class="sub-text">Modal Footer Text</span>
+             </div> -->
+         </div>
+     </div>
+ </div>

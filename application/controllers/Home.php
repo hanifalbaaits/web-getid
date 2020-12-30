@@ -10,58 +10,36 @@ class Home extends CI_Controller{
         $this->load->helper('url');
 		$this->load->helper('form');
         $this->load->library('session');
-        $this->load->model("APICoreLogbook");
-        $this->load->model("APICoreRKA");
-        $this->url_logbook = $this->config->item('url-corelogbook');
-        $this->url_corerka = $this->config->item('url-corerka');
-        $this->url_lumen = $this->config->item('url-lumen');
-        $this->url_simpok = $this->config->item('url-simpok');
+        $this->load->model("APIGetid");
         $this->session_key = $this->config->item('session-key');
+        // $this->respon_null = "There was no response from the server. Please Contact Administrator!";
+        $this->respon_null = "Tidak ada tanggapan dari server. Silahkan hubungi admin.";
+        $this->respon_session = "Session berakhir. Login terlebih dahulu.";
 
         if($this->session->userdata('logcode') !=  $this->session_key){
-            $array=array('status' => '0','message' => 'Please login first .. !');
+            $array=array('status' => '0','message' => $this->respon_session);
             $this->session->set_flashdata('message', $array);
             redirect('login');
         }
     }
 
     function index() {
-        // $nik = $this->session->userdata('nik');
-        // $idu = $this->session->userdata('iduser');
-        // $level = $this->session->userdata('level');
-        // $level_rka = $this->session->userdata('level_rka');
+        $guid = $this->session->userdata('guid');
+        $username = $this->session->userdata('storeid');
+        $respon = $this->APIGetid->getSaldoByUsername($username);
+        $respon1 = $this->APIGetid->get_transaction_last($username);
 
-        //NOTIFICATION
-        $pesan = [];
-        // if ($level_rka == '1' || $level_rka == '4') {
-        //     $api_notif = json_decode($this->APICoreRKA->Apiget($this->url_corerka."/pesan/proses"));
-        //     if ($api_notif != null && $api_notif->code == '1') {
-        //         $pesan = $api_notif->data;
-        //     }
-        // } else {
-        //     $api_notif = json_decode($this->APICoreRKA->Apiget($this->url_corerka."/pesan/proses/".$idu));
-        //     if ($api_notif != null && $api_notif->code == '1') {
-        //         $pesan = $api_notif->data;
-        //     }
-        // }
+        if ($respon == null) {
+            $array=array('status' => '0','message' => $this->respon_null);
+            $this->session->sess_destroy();
+            $this->session->set_flashdata('message', $array);
+            redirect('login', 'refresh');
+        }
 
-        // $projects_inlogbook = [];
-        // $projects_inrka = [];
-        // $year = date('Y');
-
-        // $api_book = json_decode($this->APICoreLogbook->Apiget($this->url_logbook."/project"));
-        // $api_rka = json_decode($this->APICoreRKA->Apiget($this->url_corerka."/rka/project/$year"));
-    
-        // if ($api_book != null && $api_book->code == '1') {
-        //     $projects_inlogbook = $api_book->data;
-        // }
-        // if ($api_rka != null && $api_rka->code == '1') {
-        //     $projects_inrka = $api_rka->data;
-        // }
-       
-        $data["notif"] = $pesan;
-        // $data["project_logbook"] = $projects_inlogbook;
-        // $data["project_rka"] = $projects_inrka;
+        $saldo = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
+        $last_transaction = json_decode(json_encode($respon1));
+        $data['saldo'] = (int) $saldo;
+        $data['data'] = $last_transaction;
 
         $this->load->view('frame/a_header');
         $this->load->view('frame/b_nav',$data);
