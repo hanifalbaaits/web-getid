@@ -35,6 +35,8 @@ class Login extends CI_Controller {
         $password = $this->input->post('password');
         // $username = "tsp15";
         // $password = "11111";
+        log_message('error', 'login username : '.$username);
+        log_message('error', 'login password : '.$password);
         //disini buat session 
         $today = date("Y-m-d H:i:s");
         $time = strtotime($today);
@@ -176,6 +178,7 @@ class Login extends CI_Controller {
 
     function user_logout() {
         $sessionid = $this->session->userdata('sessionid');
+        log_message('error', 'user logout session nya : '.$sessionid);
         $respon = $this->APIGetid->logoutSession($sessionid);
         // var_dump($respon);
         if ($respon == null) {

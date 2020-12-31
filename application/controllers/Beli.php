@@ -33,6 +33,7 @@ class Beli extends CI_Controller{
         }
         $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
         $list_product = json_decode(json_encode($respon1));
+        log_message('error', 'produk yg tersedia : '.json_encode($list_product));
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['product'] = $list_product;
@@ -55,6 +56,7 @@ class Beli extends CI_Controller{
         }
         $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
         $list_product = json_decode(json_encode($respon1));
+        log_message('error', 'produk yg tersedia : '.json_encode($list_product));
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['product'] = $list_product;
