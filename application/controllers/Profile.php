@@ -14,8 +14,9 @@ class Profile extends CI_Controller{
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('session');
-        $this->session_key = $this->config->item('session-key');
         $this->load->model("APIGetid");
+        $this->session_key = $this->config->item('session-key');
+        $this->sessionid = $this->session->userdata('sessionid');
         // $this->respon_null = "There was no response from the server. Please Contact Administrator!";
         $this->respon_null = "Tidak ada tanggapan dari server. Silahkan hubungi admin.";
         $this->respon_session = "Session berakhir. Login terlebih dahulu.";
@@ -30,16 +31,17 @@ class Profile extends CI_Controller{
     function index(){      
         $guid = $this->session->userdata('guid');
         $username = $this->session->userdata('storeid');
-        $respon = $this->APIGetid->getSaldoByUsername($username);
+        $respon = $this->APIGetid->getSaldoByUsername($username,$this->sessionid);
 
         if ($respon == null) {
             $array=array('status' => '0','message' => $this->respon_null);
             $this->session->set_flashdata('message', $array);
-            $this->session->sess_destroy();
-            redirect('login', 'refresh');
+            // $this->session->sess_destroy();
+            redirect('home');
         }
 
-        $saldo = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
+        $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
+        $saldo = explode('|',$rsp)[0];
         $data['saldo'] =(int) $saldo;
 
         $this->load->view('frame/a_header');
@@ -72,10 +74,10 @@ class Profile extends CI_Controller{
                 // echo json_encode(json_decode(json_encode($respon1)));
                 // exit;
                 // $this->setSession($respon1[0]);
-                $this->session->sess_destroy();
+                // $this->session->sess_destroy();
                 $array=array('status' => '1','message' => 'Ubah Profile berhasil, Silahkan Login kembali!');
                 $this->session->set_flashdata('message', $array);
-                redirect('login');
+                redirect('home');
                 
             } else {
                 $array=array('status' => '0','message' => 'Ubah Profile Gagal!');
@@ -97,7 +99,7 @@ class Profile extends CI_Controller{
             redirect('home');
         }
 
-        $respon1 = $this->APIGetid->change_password($username,$pas_lama,$pas_baru);
+        $respon1 = $this->APIGetid->change_password($username,$pas_lama,$pas_baru,$this->sessionid);
         $rspx = $respon1[0]->User_CredentialUpdateResponse->User_CredentialUpdateResult;
         $rspxt = explode("|",$rspx); //0|succed
         // var_dump($rspxt);
@@ -110,10 +112,10 @@ class Profile extends CI_Controller{
             $sess_array = array(
                 'logcode' => null
             );
-            $this->session->set_userdata($sess_array);
+            // $this->session->set_userdata($sess_array);
             $array=array('status' => '1','message' => 'Ubah Kata Sandi berhasil, Silahkan Login kembali!');
             $this->session->set_flashdata('message', $array);
-            redirect('login');
+            redirect('home');
         } else {
             $array=array('status' => '0','message' => 'Gagal ganti kata sandi');
             $this->session->set_flashdata('message', $array);
@@ -121,27 +123,27 @@ class Profile extends CI_Controller{
         }
     }
 
-    function setSession($info) {
-        $xx = $info->iduser.date('d/m/y/h/i').$this->session_key;
-        $authorization = md5($xx);
-        $sess_array = array(
-            'logcode' => $this->session_key,
-            'guid' => "$info->guid",
-            'storeid' => "$info->storeid",
-            'storename' => "$info->storename",
-            'address' => "$info->address",
-            'city' => "$info->city",
-            'province' => "$info->province",
-            'region' => "$info->region",
-            'type' => "$info->type",
-            'telephone' => "$info->telephone",
-            'email' => "$info->email",
-            'deviceid' => "$info->deviceid",
-            'openingdate' => "$info->openingdate",
-            'status' => "$info->status",
-            'auth' => "$authorization",
-        );
-        $this->session->set_userdata($sess_array);
-    }
+    // function setSession($info) {
+    //     $xx = $info->iduser.date('d/m/y/h/i').$this->session_key;
+    //     $authorization = md5($xx);
+    //     $sess_array = array(
+    //         'logcode' => $this->session_key,
+    //         'guid' => "$info->guid",
+    //         'storeid' => "$info->storeid",
+    //         'storename' => "$info->storename",
+    //         'address' => "$info->address",
+    //         'city' => "$info->city",
+    //         'province' => "$info->province",
+    //         'region' => "$info->region",
+    //         'type' => "$info->type",
+    //         'telephone' => "$info->telephone",
+    //         'email' => "$info->email",
+    //         'deviceid' => "$info->deviceid",
+    //         'openingdate' => "$info->openingdate",
+    //         'status' => "$info->status",
+    //         'auth' => "$authorization",
+    //     );
+    //     $this->session->set_userdata($sess_array);
+    // }
 }
 ?>

@@ -12,6 +12,7 @@ class Home extends CI_Controller{
         $this->load->library('session');
         $this->load->model("APIGetid");
         $this->session_key = $this->config->item('session-key');
+        $this->sessionid = $this->session->userdata('sessionid');
         // $this->respon_null = "There was no response from the server. Please Contact Administrator!";
         $this->respon_null = "Tidak ada tanggapan dari server. Silahkan hubungi admin.";
         $this->respon_session = "Session berakhir. Login terlebih dahulu.";
@@ -26,21 +27,19 @@ class Home extends CI_Controller{
     function index() {
         $guid = $this->session->userdata('guid');
         $username = $this->session->userdata('storeid');
-        $respon = $this->APIGetid->getSaldoByUsername($username);
-        $respon1 = $this->APIGetid->get_transaction_last($username);
+        $respon = $this->APIGetid->getSaldoByUsername($username,$this->sessionid);
+        $respon1 = $this->APIGetid->get_transaction_last($username,$this->sessionid);
 
         if ($respon == null) {
             $array=array('status' => '0','message' => $this->respon_null);
-            $this->session->sess_destroy();
             $this->session->set_flashdata('message', $array);
-            redirect('login', 'refresh');
         }
 
-        $saldo = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
+        $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
         $last_transaction = json_decode(json_encode($respon1));
+        $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['data'] = $last_transaction;
-
         $this->load->view('frame/a_header');
         $this->load->view('frame/b_nav',$data);
         $this->load->view('page/dashboard',$data);

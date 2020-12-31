@@ -35,52 +35,97 @@ class Login extends CI_Controller {
         $password = $this->input->post('password');
         // $username = "tsp15";
         // $password = "11111";
-
-        $respon = $this->APIGetid->getLogin($username,$password);
-        // var_dump($respon);
-        if ($respon == null) {
+        //disini buat session 
+        $today = date("Y-m-d H:i:s");
+        $time = strtotime($today);
+        $concat = $username.$password.$time;
+        $encrypt = hash('sha256',$concat);
+        $resp = $this->APIGetid->createSession($username, $time , $encrypt);
+        log_message('error', 'create session : '.json_encode($resp));
+        $sessionid = "";
+        if ($resp == null) {
             $array=array('status' => '0','message' => $this->respon_null);
             $this->session->set_flashdata('message', $array);
-            // echo "kesini1";
-        } else if (count($respon) == 0) {
+        } else if (count($resp) == 0) {
             $array=array('status' => '0','message' => 'Tidak dapat Login.');
             $this->session->set_flashdata('message', $array);
-            // echo "kesini2";
         } else {
 
-            $rsp = $respon[0]->User_LoginResponse->User_LoginResult;
-            $rspx = explode("|",$rsp); //0|succed
-            // var_dump($rsp);
+            $respx = $resp[0]->Session_CreateResponse->Session_CreateResult;
+            $respy = explode("|",$respx); //0|succed
+            log_message('error', 'respy : '.json_encode($respy));
 
-            if ($rspx == null || count($rspx) == 0) {
+            if ($respy == null || count($respy) == 0) {
                 $array=array('status' => '0','message' => 'Tidak dapat Login.');
                 $this->session->set_flashdata('message', $array);
-                // echo "kesini3";
-            } elseif ($rspx[0] == "1") {
+            } elseif ($respy[0] == "1") {
                 $array=array('status' => '0','message' => 'Tidak dapat Login, Email atau Password salah');
                 $this->session->set_flashdata('message', $array);
                 // echo "kesini4";
-            } elseif ($rspx[0] == "2") {
+            } elseif ($respy[0] == "2") {
+                $array=array('status' => '0','message' => 'Tidak dapat Login, Akun terkunci');
+                $this->session->set_flashdata('message', $array);
+            } elseif ($respy[0] == "0") {
+
+                $sessionid = $respy[1];
+                
+            } else {
                 $array=array('status' => '0','message' => 'Tidak dapat Login, Akun terkunci');
                 $this->session->set_flashdata('message', $array);
                 // echo "kesini4";
+            }
+        }
+
+        if ($sessionid != null && $sessionid != "") {
+            // var_dump($sessionid);
+            $respon = $this->APIGetid->getLogin($username,$password,$sessionid);
+            log_message('error', 'login api : '.json_encode($respon));
+            if ($respon == null) {
+                $this->gagal_login($sessionid);
+                $array=array('status' => '0','message' => $this->respon_null);
+                $this->session->set_flashdata('message', $array);
+            } else if (count($respon) == 0) {
+                $this->gagal_login($sessionid);
+                $array=array('status' => '0','message' => 'Tidak dapat Login.');
+                $this->session->set_flashdata('message', $array);
             } else {
 
-                $respon1 = $this->APIGetid->getInfoByUsername($username);
-                // var_dump($respon1);
-                if ($respon1 == null || count($respon1) == 0) {
-                    // $array=array('status' => '0','message' => 'Tidak dapat Login.');
-                    $array=array('status' => '0','message' => $this->respon_null);
+                $rsp = $respon[0]->User_LoginResponse->User_LoginResult;
+                $rspx = explode("|",$rsp); //0|succed
+                log_message('error', 'rspx : '.json_encode($rspx));
+
+                if ($rspx == null || count($rspx) == 0) {
+                    $this->gagal_login($sessionid);
+                    $array=array('status' => '0','message' => 'Tidak dapat Login.');
                     $this->session->set_flashdata('message', $array);
-                    // echo "kesini5";
+
+                } elseif ($rspx[0] == "1") {
+                    $this->gagal_login($sessionid);
+                    $array=array('status' => '0','message' => 'Session sudah aktif');
+                    $this->session->set_flashdata('message', $array);
+                    redirect('login');
+                } elseif ($rspx[0] == "2") {
+                    $this->gagal_login($sessionid);
+                    $array=array('status' => '0','message' => 'Tidak dapat Login, Akun terkunci');
+                    $this->session->set_flashdata('message', $array);
+
                 } else {
 
-                    if ($respon1[0]->status == "INACTIVE") { //INACTIVE
-                        $array=array('status' => '0','message' => 'Tidak dapat Login. Status Tidak Aktif');
+                    $respon1 = $this->APIGetid->getInfoByUsername($username,$sessionid);
+                    log_message('error', 'info username : '.json_encode($respon1));
+                    if ($respon1 == null || count($respon1) == 0) {
+                        $this->gagal_login($sessionid);
+                        $array=array('status' => '0','message' => $this->respon_null);
                         $this->session->set_flashdata('message', $array);
-                        // echo "kesini6";
                     } else {
-                        $this->setSession($respon1[0],$password);
+
+                        if ($respon1[0]->status == "INACTIVE") { //INACTIVE
+                            $this->gagal_login($sessionid);
+                            $array=array('status' => '0','message' => 'Tidak dapat Login. Status Tidak Aktif');
+                            $this->session->set_flashdata('message', $array);
+                        } else {
+                            $this->setSession($respon1[0],$password,$sessionid);
+                        }
                     }
                 }
             }
@@ -88,8 +133,7 @@ class Login extends CI_Controller {
         redirect('login');
     }
 
-    function setSession($info,$password) {
-        // echo "kesini7";
+    function setSession($info,$password,$sessionid) {
         $xx = $info->iduser.date('d/m/y/h/i').$this->session_key;
         $authorization = md5($xx);
         $sess_array = array(
@@ -109,6 +153,7 @@ class Login extends CI_Controller {
             'openingdate' => "$info->openingdate",
             'status' => "$info->status",
             'auth' => "$authorization",
+            'sessionid' => "$sessionid",
         );
         $this->session->set_userdata($sess_array);
     }
@@ -130,7 +175,22 @@ class Login extends CI_Controller {
     }
 
     function user_logout() {
-        $this->session->sess_destroy();
+        $sessionid = $this->session->userdata('sessionid');
+        $respon = $this->APIGetid->logoutSession($sessionid);
+        // var_dump($respon);
+        if ($respon == null) {
+            $array=array('status' => '0','message' => $this->respon_null);
+            $this->session->set_flashdata('message', $array);
+            // echo "kesini1";
+        } else if (count($respon) == 0) {
+            $array=array('status' => '0','message' => 'Tidak dapat Logout. Ulangi kembali');
+            $this->session->set_flashdata('message', $array);
+            // echo "kesini2";
+        } else {
+            $array=array('status' => '1','message' => 'Berhasil Logout.');
+            $this->session->set_flashdata('message', $array);
+            $this->session->sess_destroy();
+        }
         redirect('login', 'refresh');
     }
 
@@ -156,20 +216,17 @@ class Login extends CI_Controller {
         $fullname = $this->input->post('name');
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        var_dump($fullname);var_dump($email);var_dump($password);
-
-
+        // var_dump($fullname);var_dump($email);var_dump($password);
         $respon = $this->APIGetid->register($email,$password);
-        var_dump($respon);
+        // var_dump($respon);
         if ($respon == null) {
             $array=array('status' => '0','message' => $this->respon_null);
             $this->session->set_flashdata('message', $array);
             redirect('Login/register');
         }
-
         $rsp = $respon[0]->Store_RegisterResponse->Store_RegisterResult;
         $rspx = explode("|",$rsp); 
-        var_dump($rspx);
+        // var_dump($rspx);
         if ($rspx == null || count($rspx) == 0) {
             $array=array('status' => '0','message' => $this->respon_null);
             $this->session->set_flashdata('message', $array);
@@ -228,6 +285,13 @@ class Login extends CI_Controller {
                 // redirect('Login/register');
             }
         } 
+    }
+
+    function gagal_login($sessionid) {
+        log_message('error', 'gagal login. api logout session : '.$sessionid);
+        $respon1 = $this->APIGetid->logoutSession($sessionid);
+        $respon2 = $this->APIGetid->logoutSession($sessionid);
+        $respon3 = $this->APIGetid->logoutSession($sessionid);
     }
 }
 ?>

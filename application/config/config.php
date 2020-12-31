@@ -245,7 +245,7 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 1;
 
 /*
 |--------------------------------------------------------------------------
@@ -566,14 +566,16 @@ if (LIVE == "production") {
     $config['url-simpok'] = "http://10.0.1.90/api_grtk/index.php/web_service/api";
     $config['url-corelogbook'] = "http://10.0.1.90:8002/coreapi/core-logbook";
     $config['url-corerka'] = "http://10.0.1.90:8006/core-rka";
-    $config['url-getid'] = "http://13.229.215.2:13001/appreq/service.asmx";
+    // $config['url-getid'] = "http://13.229.215.2:13001/appreq/service.asmx";
+    $config['url-getid'] = "http://13.229.215.2:13001/appreqsession/service.asmx";
     $config['url-trx'] = "http://13.229.215.2:13001/tspreq/rpc.aspx";
 } else {
     $config['url-lumen']='http://www.gratika.co.id/apigrtk2';
     $config['url-simpok'] = "http://www.gratika.co.id/apigrtk/index.php/web_service/api";
     $config['url-corelogbook'] = "http://aplikasi2.gratika.id/coreapi/core-logbook";
     $config['url-corerka'] = "http://aplikasi2.gratika.id/corerka/core-rka";
-    $config['url-getid'] = "http://13.229.215.2:13001/appreq/service.asmx";
+    // $config['url-getid'] = "http://13.229.215.2:13001/appreq/service.asmx";
+    $config['url-getid'] = "http://13.229.215.2:13001/appreqsession/service.asmx";
     $config['url-trx'] = "http://13.229.215.2:13001/tspreq/rpc.aspx";
 }
 

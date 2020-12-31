@@ -32,7 +32,10 @@
                     <h4 class="nk-modal-title">Berhasil!</h4>
                     <div class="nk-modal-text">
                         <div class="caption-text">
-                            <?php echo json_decode(json_encode($this->session->flashdata('message')))->message; ?>
+                            <?php
+                            if ($this->session->flashdata('message') != null) {
+                                echo json_decode(json_encode($this->session->flashdata('message')))->message; 
+                            }?>
                         </div>
                         <!-- <span class="sub-text-sm">Learn when you reciveve bitcoin in your wallet. <a href="#"> Click
                                     here</a></span> -->
@@ -60,7 +63,10 @@
                     <h4 class="nk-modal-title">Maaf Gagal!</h4>
                     <div class="nk-modal-text">
                         <p class="lead">
-                            <?php echo json_decode(json_encode($this->session->flashdata('message')))->message; ?>
+                            <?php
+                            if ($this->session->flashdata('message') != null) {
+                                echo json_decode(json_encode($this->session->flashdata('message')))->message; 
+                            }?>
                         </p>
                         <!-- <p class="text-soft">Jika kamu memerlukan bantuan hubungi kami di (813) 86111-891.</p> -->
                     </div>
