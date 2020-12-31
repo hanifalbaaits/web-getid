@@ -1,6 +1,6 @@
 /user_guide/
 /.vscode/
-/assets/
+# /assets/
 /global/
 /src/
 /vendor/
@@ -8,7 +8,7 @@
 /assets2/
 /global3/
 /src3
-/html/
-/js/
-/scss/
+# /html/
+# /js/
+# /scss/
 /application/logs/
