@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <meta name="description" content="Aplikasi Jual Pulsa dan Paket Data termurah">
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets_custom/pavicon.png">
     <!-- Page Title  -->
@@ -106,7 +105,7 @@
                                 <ul class="nav justify-center gx-8">
                                     <!-- <li class="nav-item"><a class="nav-link" href="#">Facebook</a></li> -->
                                     <li class="nav-item"><a class="nav-link"
-                                            href="<?php echo site_url('Login/google');?>">Login dengan Google</a></li>
+                                            href="<?php echo site_url('login/oauthg')?>">Login dengan Google</a></li>
                                 </ul>
                             </div><!-- .nk-block -->
                             <div class="nk-block nk-auth-footer">
@@ -249,7 +248,11 @@
                         <h4 class="nk-modal-title">Berhasil!</h4>
                         <div class="nk-modal-text">
                             <div class="caption-text">
-                                <?php echo json_decode(json_encode($this->session->flashdata('message')))->message; ?>
+                                <?php
+                                if ($this->session->flashdata('message') != null) {
+                                    echo json_decode(json_encode($this->session->flashdata('message')))->message; 
+                                } 
+                                ?>
                             </div>
                             <!-- <span class="sub-text-sm">Learn when you reciveve bitcoin in your wallet. <a href="#"> Click
                                     here</a></span> -->
@@ -277,7 +280,11 @@
                         <h4 class="nk-modal-title">Maaf Gagal!</h4>
                         <div class="nk-modal-text">
                             <p class="lead">
-                                <?php echo json_decode(json_encode($this->session->flashdata('message')))->message; ?>
+                                <?php
+                                if ($this->session->flashdata('message') != null) {
+                                    echo json_decode(json_encode($this->session->flashdata('message')))->message; 
+                                } 
+                                ?>
                             </p>
                             <!-- <p class="text-soft">Jika kamu memerlukan bantuan hubungi kami di (813) 86111-891.</p> -->
                         </div>
@@ -305,9 +312,6 @@
         }
     }
     </script>
-
-
-
 
     <!-- JavaScript -->
     <?php if($this->session->flashdata('message') != NULL) {

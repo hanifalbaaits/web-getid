@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <meta name="description" content="Aplikasi Jual Pulsa dan Paket Data termurah">
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets_custom/pavicon.png">
     <!-- Page Title  -->
@@ -18,6 +17,7 @@
 
     <!-- JQUERY -->
     <script src="<?php echo base_url(). "js/" ?>vendors/jquery/jquery.js"></script>
+
 </head>
 
 <body class="nk-body npc-invest bg-lighter ">

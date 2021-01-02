@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <meta name="description" content="Aplikasi Jual Pulsa dan Paket Data termurah">
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets_custom/pavicon.png">
     <!-- Page Title  -->
@@ -15,7 +14,6 @@
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dashlite.css?ver=1.9.2">
     <link id="skin-default" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/theme.css?ver=1.9.2">
-
     <!-- JQUERY -->
     <script src="<?php echo base_url(). "js/" ?>vendors/jquery/jquery.js"></script>
 </head>
@@ -94,7 +92,7 @@
                                 <ul class="nav justify-center gx-4">
                                     <!-- <li class="nav-item"><a class="nav-link" href="#">Facebook</a></li> -->
                                     <li class="nav-item"><a class="nav-link"
-                                            href="<?php echo site_url('Login/google')?>">Login dengan Google</a></li>
+                                            href="<?php echo site_url('login/oauthg')?>">Login dengan Google</a></li>
                                 </ul>
                                 <!-- <div class="text-center mt-5">
                                     <span class="fw-500">I don't have an account? <a href="#">Try 15 days

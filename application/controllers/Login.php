@@ -1,5 +1,8 @@
 <?php
 
+
+include FCPATH."vendor/autoload.php";
+
 class Login extends CI_Controller {  
     function __construct(){
         parent::__construct();
@@ -9,6 +12,8 @@ class Login extends CI_Controller {
         $this->load->library('session');
         $this->load->model("APIGetid");
         $this->session_key = $this->config->item('session-key');
+        $this->googleapikey = $this->config->item("googlekey");
+        $this->googlesecret = $this->config->item('googlesecret');
         // $this->respon_null = "There was no response from the server. Please Contact Administrator!";
         $this->respon_null = "Tidak ada tanggapan dari server. Silahkan hubungi admin.";
         $this->respon_session = "Session berakhir. Login terlebih dahulu.";
@@ -61,8 +66,14 @@ class Login extends CI_Controller {
                 $array=array('status' => '0','message' => 'Tidak dapat Login.');
                 $this->session->set_flashdata('message', $array);
             } elseif ($respy[0] == "1") {
-                $array=array('status' => '0','message' => 'Tidak dapat Login, Email atau Password salah');
-                $this->session->set_flashdata('message', $array);
+
+                if ($respy[1] == "invalid date") {
+                    $array=array('status' => '0','message' => 'Tidak dapat Login, Invalid Date. Silahkan coba kembali');
+                    $this->session->set_flashdata('message', $array);
+                } else {
+                    $array=array('status' => '0','message' => 'Tidak dapat Login, Email atau Password salah');
+                    $this->session->set_flashdata('message', $array);
+                }
                 // echo "kesini4";
             } elseif ($respy[0] == "2") {
                 $array=array('status' => '0','message' => 'Tidak dapat Login, Akun terkunci');
@@ -105,7 +116,7 @@ class Login extends CI_Controller {
                     $this->gagal_login($sessionid);
                     $array=array('status' => '0','message' => 'Session sudah aktif');
                     $this->session->set_flashdata('message', $array);
-                    redirect('login');
+                    redirect('Login');
                 } elseif ($rspx[0] == "2") {
                     $this->gagal_login($sessionid);
                     $array=array('status' => '0','message' => 'Tidak dapat Login, Akun terkunci');
@@ -132,7 +143,7 @@ class Login extends CI_Controller {
                 }
             }
         }
-        redirect('login');
+        redirect('Login');
     }
 
     function setSession($info,$password,$sessionid) {
@@ -194,7 +205,7 @@ class Login extends CI_Controller {
             $this->session->set_flashdata('message', $array);
             $this->session->sess_destroy();
         }
-        redirect('login', 'refresh');
+        redirect('Login', 'refresh');
     }
 
     function test_config(){
@@ -295,6 +306,230 @@ class Login extends CI_Controller {
         $respon1 = $this->APIGetid->logoutSession($sessionid);
         $respon2 = $this->APIGetid->logoutSession($sessionid);
         $respon3 = $this->APIGetid->logoutSession($sessionid);
+    }
+
+    function oauthg() {
+        ob_start();
+        $this->google = new Google_Client();
+        $this->google->setApplicationName("GetId Application");
+        $this->google->setClientId($this->googleapikey);
+        $this->google->setClientSecret($this->googlesecret);
+        $this->google->setScopes(array(
+            "https://www.googleapis.com/auth/userinfo.email",
+            "https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/plus.me"
+        ));
+        $this->google->setRedirectUri(site_url("login/oauthg"));
+
+        if (!isset($_GET['code'])) {
+            log_message('error', '==== login with google ====');
+            $auth_url = $this->google->createAuthUrl();
+            header('Location: ' . filter_var($auth_url, FILTER_SANITIZE_URL));
+            ob_flush();
+        }
+        else {
+            ob_flush();
+            log_message('error', '==== login success with google redirect ====');
+            $this->google->authenticate($_GET['code']);
+            $token = $this->google->getAccessToken();
+            $this->session->set_userdata('token', $this->google->getAccessToken());
+
+            $plus = new Google_Service_Oauth2($this->google);
+            $email = $plus->userinfo->get()->email;
+            $name = $plus->userinfo->get()->name;
+            $familyname = $plus->userinfo->get()->familyName;
+            $givenname = $plus->userinfo->get()->givenName;
+            $gender = $plus->userinfo->get()->gender;
+            $pict = $plus->userinfo->get()->picture;
+            log_message('error', 'email : '.$email);
+            log_message('error', 'name : '.$name);
+            log_message('error', 'familyname : '.$familyname);
+            log_message('error', 'givenname : '.$givenname);
+            log_message('error', 'gender : '.$gender);
+            log_message('error', 'pict : '.$pict);
+
+            $username = $email;
+            $password = "12345";
+            log_message('error', 'login username : '.$username);
+            log_message('error', 'login password : '.$password);
+            //disini buat session 
+            $today = date("Y-m-d H:i:s");
+            $time = strtotime($today);
+            $concat = $username.$password.$time;
+            $encrypt = hash('sha256',$concat);
+            $resp = $this->APIGetid->createSession($username, $time , $encrypt);
+            log_message('error', 'create session : '.json_encode($resp));
+
+            $sessionid = "";
+            if ($resp == null) {
+                $array=array('status' => '0','message' => $this->respon_null);
+                $this->session->set_flashdata('message', $array);
+            } else if (count($resp) == 0) {
+                $array=array('status' => '0','message' => 'Tidak dapat Login. Silahkan Coba Kembali');
+                $this->session->set_flashdata('message', $array);
+            } else {
+
+                $respx = $resp[0]->Session_CreateResponse->Session_CreateResult;
+                $respy = explode("|",$respx); //0|succed
+                log_message('error', 'respy : '.json_encode($respy));
+
+                if ($respy == null || count($respy) == 0) {
+                    $array=array('status' => '0','message' => 'Tidak dapat Login.');
+                    $this->session->set_flashdata('message', $array);
+                } elseif ($respy[0] == "1") {
+
+                    if ($respy[1] == "invalid date") {
+                        $array=array('status' => '0','message' => 'Tidak dapat Login, Invalid Date. Silahkan coba kembali');
+                        $this->session->set_flashdata('message', $array);
+                    } else {
+                        log_message('error', 'login by google, storeid tidak ada. register disini');
+                        $this->register_google($name,$username,$password);
+                        redirect('Login');
+                        // $array=array('status' => '0','message' => 'Tidak dapat Login, Email atau Password salah');
+                        // $this->session->set_flashdata('message', $array);
+                    }
+                    // echo "kesini4";
+                } elseif ($respy[0] == "2") {
+                    $array=array('status' => '0','message' => 'Tidak dapat Login, Akun terkunci');
+                    $this->session->set_flashdata('message', $array);
+                } elseif ($respy[0] == "0") {
+
+                    $sessionid = $respy[1];
+                    
+                } else {
+                    $array=array('status' => '0','message' => 'Tidak dapat Login, Akun terkunci');
+                    $this->session->set_flashdata('message', $array);
+                    // echo "kesini4";
+                }
+            }
+
+            if ($sessionid != null && $sessionid != "") {
+                // var_dump($sessionid);
+                $respon = $this->APIGetid->getLogin($username,$password,$sessionid);
+                log_message('error', 'login api : '.json_encode($respon));
+                if ($respon == null) {
+                    $this->gagal_login($sessionid);
+                    $array=array('status' => '0','message' => $this->respon_null);
+                    $this->session->set_flashdata('message', $array);
+                } else if (count($respon) == 0) {
+                    $this->gagal_login($sessionid);
+                    $array=array('status' => '0','message' => 'Tidak dapat Login.');
+                    $this->session->set_flashdata('message', $array);
+                } else {
+
+                    $rsp = $respon[0]->User_LoginResponse->User_LoginResult;
+                    $rspx = explode("|",$rsp); //0|succed
+                    log_message('error', 'rspx : '.json_encode($rspx));
+
+                    if ($rspx == null || count($rspx) == 0) {
+                        $this->gagal_login($sessionid);
+                        $array=array('status' => '0','message' => 'Tidak dapat Login. Silahkan Coba Kembali');
+                        $this->session->set_flashdata('message', $array);
+
+                    } elseif ($rspx[0] == "1") {
+                        $this->gagal_login($sessionid);
+                        $array=array('status' => '0','message' => 'Session sudah aktif');
+                        $this->session->set_flashdata('message', $array);
+                        redirect('Login');
+                    } elseif ($rspx[0] == "2") {
+                        $this->gagal_login($sessionid);
+                        $array=array('status' => '0','message' => 'Tidak dapat Login, Akun terkunci');
+                        $this->session->set_flashdata('message', $array);
+
+                    } else {
+
+                        $respon1 = $this->APIGetid->getInfoByUsername($username,$sessionid);
+                        log_message('error', 'info username : '.json_encode($respon1));
+                        if ($respon1 == null || count($respon1) == 0) {
+                            $this->gagal_login($sessionid);
+                            $array=array('status' => '0','message' => $this->respon_null);
+                            $this->session->set_flashdata('message', $array);
+                        } else {
+
+                            if ($respon1[0]->status == "INACTIVE") { //INACTIVE
+                                $this->gagal_login($sessionid);
+                                $array=array('status' => '0','message' => 'Tidak dapat Login. Status Tidak Aktif');
+                                $this->session->set_flashdata('message', $array);
+                            } else {
+                                $this->setSession($respon1[0],$password,$sessionid);
+                            }
+                        }
+                    }
+                }
+            }
+            redirect('Login');
+        }
+    }
+
+    function register_google($fullname , $email, $password){
+        log_message('error', 'register by google. fullname : '.$fullname);
+        log_message('error', 'register by google. email : '.$email);
+        log_message('error', 'register by google. password : '.$password);
+        $respon = $this->APIGetid->register($email,$password);
+        // var_dump($respon);
+        if ($respon == null) {
+            $array=array('status' => '0','message' => $this->respon_null);
+            $this->session->set_flashdata('message', $array);
+            redirect('Login');
+        }
+        $rsp = $respon[0]->Store_RegisterResponse->Store_RegisterResult;
+        $rspx = explode("|",$rsp); 
+        // var_dump($rspx);
+        if ($rspx == null || count($rspx) == 0) {
+            $array=array('status' => '0','message' => $this->respon_null);
+            $this->session->set_flashdata('message', $array);
+            redirect('Login');
+        } else {
+            if ($rspx[0] == '00') {
+
+                $guid = $rspx[1];
+                $date = date('Ymd');
+
+                $respon1 = $this->APIGetid->store_update($guid,$email,$fullname,"Jakarta", "0","0", $date);
+                // var_dump($respon1);
+                if ($respon1 == null) {
+                    $array=array('status' => '0','message' => 'Register Gagal.');
+                    $this->session->set_flashdata('message', $array);
+                    // redirect('Login/register');
+                } else {
+                    $dt = $respon1[0]->Response;
+                    $dtx = explode("|",$dt); //0|succed
+                    // var_dump($dtx);
+                    if ($dtx[0] == "00") {
+                        $respon2 = $this->APIGetid->activation($email);
+                        // var_dump($respon2);
+
+                        $rdt = $respon2[0]->User_ActivationResponse->User_ActivationResult;
+                        $rdtx = explode("|",$rdt);
+                        // var_dump($rdtx);
+                        if ($rdtx == null && count($rdtx) == 0) {
+                            $array=array('status' => '0','message' => 'Login Gagal.');
+                            $this->session->set_flashdata('message', $array);
+                            redirect('Login');
+                        } else if ($rdtx[0] == '0') {
+                            $array=array('status' => '1','message' => 'Berhasil Register, Silahkan Login Kembali!');
+                            $this->session->set_flashdata('message', $array);
+                            redirect('Login');
+                        } else {
+
+                            $array=array('status' => '0','message' => 'Login Gagal.');
+                            $this->session->set_flashdata('message', $array);
+                            redirect('Login');
+                        }
+                        
+                    } else {
+                        $array=array('status' => '0','message' => 'Login Gagal.');
+                        $this->session->set_flashdata('message', $array);
+                        redirect('Login');
+                    }
+                }
+
+            } else {
+                $array=array('status' => '0','message' => 'Email Sudah digunakan');
+                $this->session->set_flashdata('message', $array);
+                redirect('Login');
+            }
+        } 
     }
 }
 ?>

@@ -582,3 +582,5 @@ if (LIVE == "production") {
 // $config['url-corelogbook'] = "http://localhost:3000/coreapi/core-logbook"; 
 // $config['url-corerka'] = "http://localhost:8006/core-rka";
 // $config['url-websocket'] = 'ws://10.0.1.90:8003';
+$config['googlekey'] = "889889866932-33jfec68ujco1p7vhkb5r9vc2lvm6bs4.apps.googleusercontent.com";
+$config['googlesecret'] = "23jj1UrtcHHsgEuPuSSwTfZ8";
