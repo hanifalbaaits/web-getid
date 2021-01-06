@@ -3,7 +3,7 @@
 # /assets/
 /global/
 /src/
-/vendor/
+# /vendor/
 /topicon/
 /assets2/
 /global3/
