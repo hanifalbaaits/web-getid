@@ -45,6 +45,8 @@ class Login extends CI_Controller {
         //disini buat session 
         $today = date("Y-m-d H:i:s");
         $time = strtotime($today);
+        log_message('error', 'today: '.$today);
+        log_message('error', 'time unix: '.$time);
         $concat = $username.$password.$time;
         $encrypt = hash('sha256',$concat);
         $resp = $this->APIGetid->createSession($username, $time , $encrypt);
