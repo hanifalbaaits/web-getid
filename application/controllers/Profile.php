@@ -41,13 +41,25 @@ class Profile extends CI_Controller{
         }
 
         $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
+        if (strpos(explode('|',$rsp)[1], 'expired') !== false) {
+            $this->session->sess_destroy();
+            $array=array('status' => '0','message' => $this->respon_session);
+            $this->session->set_flashdata('message', $array);
+            redirect('login');
+        }
+
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] =(int) $saldo;
 
-        $this->load->view('frame/a_header');
-        $this->load->view('frame/b_nav',$data);
-        $this->load->view('page/profile');
-        $this->load->view('frame/d_footer');      
+        // $this->load->view('frame/a_header');
+        // $this->load->view('frame/b_nav',$data);
+        // $this->load->view('page/profile');
+        // $this->load->view('frame/d_footer');   
+        
+        $this->load->view('page_dana/frame/header');
+        $this->load->view('page_dana/frame/nav',$data);
+        $this->load->view('page_dana/profile');
+        $this->load->view('page_dana/frame/footer');   
     }
 
     function update(){      

@@ -33,14 +33,28 @@ class Beli extends CI_Controller{
         }
         $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
         $list_product = json_decode(json_encode($respon1));
+
+        if (strpos(explode('|',$rsp)[1], 'expired') !== false) {
+            $this->session->sess_destroy();
+            $array=array('status' => '0','message' => $this->respon_session);
+            $this->session->set_flashdata('message', $array);
+            redirect('login');
+        }
+        
         log_message('error', 'produk yg tersedia : '.json_encode($list_product));
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['product'] = $list_product;
-        $this->load->view('frame/a_header');
-        $this->load->view('frame/b_nav',$data);
-        $this->load->view('page/beli/pulsa',$data);
-        $this->load->view('frame/d_footer');        
+        // $this->load->view('frame/a_header');
+        // $this->load->view('frame/b_nav',$data);
+        // $this->load->view('page/beli/pulsa',$data);
+        // $this->load->view('frame/d_footer');     
+        
+        $this->load->view('page_dana/frame/header');
+        // $this->load->view('page_dana/frame/nav',$data);
+        $this->load->view('page_dana/frame/nav-putih',$data);
+        $this->load->view('page_dana/beli/pulsa',$data);
+        $this->load->view('page_dana/frame/footer');   
     }
 
     function paket(){  
@@ -56,14 +70,27 @@ class Beli extends CI_Controller{
         }
         $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
         $list_product = json_decode(json_encode($respon1));
+
+        if (strpos(explode('|',$rsp)[1], 'expired') !== false) {
+            $this->session->sess_destroy();
+            $array=array('status' => '0','message' => $this->respon_session);
+            $this->session->set_flashdata('message', $array);
+            redirect('login');
+        }
+
         log_message('error', 'produk yg tersedia : '.json_encode($list_product));
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['product'] = $list_product;
-        $this->load->view('frame/a_header');
-        $this->load->view('frame/b_nav',$data);
-        $this->load->view('page/beli/paket',$data);
-        $this->load->view('frame/d_footer');      
+        // $this->load->view('frame/a_header');
+        // $this->load->view('frame/b_nav',$data);
+        // $this->load->view('page/beli/paket',$data);
+        // $this->load->view('frame/d_footer');     
+        $this->load->view('page_dana/frame/header');
+        // $this->load->view('page_dana/frame/nav',$data);
+        $this->load->view('page_dana/frame/nav-putih',$data);
+        $this->load->view('page_dana/beli/paket',$data);
+        $this->load->view('page_dana/frame/footer');    
     }
 
     function topup(){  
@@ -87,15 +114,27 @@ class Beli extends CI_Controller{
         }
 
         $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
+        if (strpos(explode('|',$rsp)[1], 'expired') !== false) {
+            $this->session->sess_destroy();
+            $array=array('status' => '0','message' => $this->respon_session);
+            $this->session->set_flashdata('message', $array);
+            redirect('login');
+        }
+
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['flag'] = $flag;
         $data['time_topup'] = $time_topup;
         $data['nominal_topup'] = $nominal_topup;
-        $this->load->view('frame/a_header');
-        $this->load->view('frame/b_nav',$data);
-        $this->load->view('page/beli/topup',$data);
-        $this->load->view('frame/d_footer');      
+        // $this->load->view('frame/a_header');
+        // $this->load->view('frame/b_nav',$data);
+        // $this->load->view('page/beli/topup',$data);
+        // $this->load->view('frame/d_footer');     
+        
+        $this->load->view('page_dana/frame/header');
+        $this->load->view('page_dana/frame/nav-putih',$data);
+        $this->load->view('page_dana/beli/topup',$data);
+        $this->load->view('page_dana/frame/footer');   
     }
 
     function trx_pulsa(){

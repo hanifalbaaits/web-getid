@@ -1,0 +1,311 @@
+body {
+  background-color: #089aeb;
+  color: white;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+}
+.beli {
+  background-color: whitesmoke;
+  color: black;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+}
+@font-face {
+  font-family: "ArialR";
+  src: url("assets/css/Arial-Rounded-MT.Ttf"); /* IE9 Compat Modes */
+}
+.header-beranda {
+  margin: 0 100px;
+  z-index: 99;
+  background-color: #089aeb;
+}
+.header-beli {
+  width: 100%;
+  padding: 0 100px;
+  z-index: 99;
+  background-color: white;
+  color: black;
+  box-shadow: 0px 10px 10px -15px #111;
+}
+
+.angle:hover .fa-angle-down,
+.angle .fa-angle-up {
+  display: none;
+}
+.angle:hover .fa-angle-up {
+  display: inline;
+}
+.head-left > div {
+  margin: 0 20px;
+}
+
+a {
+  color: white;
+}
+a:hover {
+  color: #51c9f3;
+  text-decoration: none;
+}
+.a-beranda {
+  color: black;
+}
+::placeholder {
+  color: #d1d1d1;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #d1d1d1;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #d1d1d1;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.dropbtn {
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  border-bottom: solid 1px;
+  border-left: solid 5px #f5af19;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/******************* LOGIN **********/
+.login {
+  position: fixed;
+}
+.content {
+  padding: 70px 100px;
+}
+input {
+  width: 80%;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid white;
+}
+.create {
+  color: #51c9f3;
+}
+.create:hover {
+  color: white;
+  text-decoration: underline;
+}
+.atau {
+  width: 80%;
+  border-bottom: 2px solid whitesmoke;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  text-align: center;
+}
+.atau-text {
+  background: #089aeb;
+  padding: 0 10px;
+}
+.google {
+  border: solid 2px white;
+  width: 80%;
+  display: inline-block;
+  text-align: center;
+  color: white;
+}
+.google:hover {
+  color: #51c9f3;
+}
+.masuk {
+  width: 80%;
+  background-color: #fbb040;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  opacity: 100%;
+}
+
+.lanjut {
+  padding: 5px 10px;
+  background-color: #089aeb;
+  border-radius: 2px;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  opacity: 100%;
+}
+.kembali {
+  padding: 5px 10px;
+  background-color: #d4d4d4;
+  border-radius: 2px;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  opacity: 100%;
+}
+button:hover {
+  background-color: #da9f22;
+}
+
+.parent {
+  position: relative;
+  width: 100%;
+}
+.image1 {
+  position: absolute;
+  z-index: -1;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+}
+.image2 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  top: -5px;
+  left: 0;
+}
+
+/******** BERANDA **********/
+.beranda {
+  margin: 0 80px;
+}
+
+.saldo {
+  position: relative;
+  text-align: left;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  line-height: 1.3;
+  transform: translate(-50%, -50%);
+}
+.cen-one {
+  font-family: "ArialR";
+  font-weight: bold;
+  font-size: 35px;
+}
+.cen-two {
+  font-size: 30px;
+  font-weight: bold;
+}
+.top-up {
+  color: #ffd885;
+}
+.top-up:hover {
+  color: #da9f22;
+}
+thead > tr > th {
+  font-weight: normal;
+}
+tbody > tr > td:last-child {
+  text-align: center;
+}
+.lihat-semua {
+  color: #51c9f3;
+}
+.lihat-semua:hover {
+  color: #0ea8e0;
+}
+
+/********** BEli **********/
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tabs label {
+  order: 1;
+  display: block;
+  padding: 0.5rem 2rem;
+  margin-right: 0.2rem;
+  cursor: pointer;
+  background: #d4d4d4;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+
+  font-weight: bold;
+  transition: background ease 0.2s;
+}
+.tabs .tab {
+  order: 99;
+  flex-grow: 1;
+  width: 100%;
+  display: none;
+  padding: 1rem;
+  background: #fff;
+}
+.tabs input[type="radio"] {
+  display: none;
+}
+.tabs input[type="radio"]:checked + label {
+  background: #fff;
+}
+.tabs input[type="radio"]:checked + label + .tab {
+  display: block;
+}
+
+/**
+ * Generic Styling
+*/
+
+/********** Footer **********/
+footer {
+  padding: 20px 100px;
+  background-color: whitesmoke;
+}
+.a-foot > span > a {
+  color: black;
+}
+
+.a-foot > span > a:hover {
+  color: rgb(128, 114, 114);
+}

@@ -27,22 +27,33 @@ class Riwayat extends CI_Controller{
         }
     }
 
-    function transaksi(){  
+    function index(){  
         $guid = $this->session->userdata('guid');
         $username = $this->session->userdata('storeid');
         $tgl_mulai = $this->input->get('tgl_mulai');
         $tgl_akhir = $this->input->get('tgl_akhir');
+        $flg = $this->input->get('flag');
         $respon = $this->APIGetid->getSaldoByUsername($username,$this->sessionid);
         
         if ($tgl_mulai != null && $tgl_akhir != null) {
             $tgl_mulai = date("Ymd",strtotime($tgl_mulai));
-            $tgl_akhir = date("Ymd",strtotime($tgl_akhir));       
-            $respon1 = $this->APIGetid->get_transaction_search($username,$tgl_mulai,$tgl_akhir,$this->sessionid);
-            $msg = "Pencarian transaksi dari tanggal ".date("d M Y",strtotime($tgl_mulai))." sampai ".date("d M Y",strtotime($tgl_akhir));
+            $tgl_akhir = date("Ymd",strtotime($tgl_akhir));     
             
+            if ($flg == 'transaksi') {
+                $respon1 = $this->APIGetid->get_transaction_search($username,$tgl_mulai,$tgl_akhir,$this->sessionid);
+                $respon2 = $this->APIGetid->get_deposito_last($username,$this->sessionid);
+                $msg = "Pencarian transaksi dari tanggal ".date("d M Y",strtotime($tgl_mulai))." sampai ".date("d M Y",strtotime($tgl_akhir));
+            } else {
+                $respon2 = $this->APIGetid->get_deposito_search($username,$tgl_mulai,$tgl_akhir,$this->sessionid);
+                $respon1 = $this->APIGetid->get_transaction_last($username,$this->sessionid);
+                $msg = "Pencarian Deposito dari tanggal ".date("d M Y",strtotime($tgl_mulai))." sampai ".date("d M Y",strtotime($tgl_akhir));
+            }
+
         } else {
+            $flg = 'transaksi';
             $respon1 = $this->APIGetid->get_transaction_last($username,$this->sessionid);
             $msg = "List Transaksi Terakhir";
+            $respon2 = $this->APIGetid->get_deposito_last($username,$this->sessionid);
         }
 
         if ($respon == null) {
@@ -52,16 +63,31 @@ class Riwayat extends CI_Controller{
         }
 
         $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
+        if (strpos(explode('|',$rsp)[1], 'expired') !== false) {
+            $this->session->sess_destroy();
+            $array=array('status' => '0','message' => $this->respon_session);
+            $this->session->set_flashdata('message', $array);
+            redirect('login');
+        }
+
         $last_transaction = json_decode(json_encode($respon1));
+        $last_deposito = json_decode(json_encode($respon2));
         $saldo = explode('|',$rsp)[0];
 
         $data['saldo'] = (int) $saldo;
-        $data['data'] = $last_transaction;
+        $data['transaksi'] = $last_transaction;
+        $data['deposito'] = $last_deposito;
         $data['msg'] = $msg;             
-        $this->load->view('frame/a_header');
-        $this->load->view('frame/b_nav',$data);
-        $this->load->view('page/riwayat/list_transaksi',$data);
-        $this->load->view('frame/d_footer');        
+        $data['flag'] = $flg;   
+        // $this->load->view('frame/a_header');
+        // $this->load->view('frame/b_nav',$data);
+        // $this->load->view('page/riwayat/list_transaksi',$data);
+        // $this->load->view('frame/d_footer');    
+        
+        $this->load->view('page_dana/frame/header');
+        $this->load->view('page_dana/frame/nav-putih',$data);
+        $this->load->view('page_dana/riwayat/transaksi',$data);
+        $this->load->view('page_dana/frame/footer');   
     }
 
     function deposito(){  
@@ -92,19 +118,32 @@ class Riwayat extends CI_Controller{
         }
 
         $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
+        if (strpos(explode('|',$rsp)[1], 'expired') !== false) {
+            $this->session->sess_destroy();
+            $array=array('status' => '0','message' => $this->respon_session);
+            $this->session->set_flashdata('message', $array);
+            redirect('login');
+        }
+        
         $last_deposito = json_decode(json_encode($respon1));
         $saldo = explode('|',$rsp)[0];
+        $data['flag'] = $
         $data['saldo'] = (int) $saldo;
-        $data['data'] = $last_deposito;
+        $data['deposito'] = $last_deposito;
         $data['msg'] = $msg; 
         $data['flg'] = $flg; 
 
         // var_dump($last_deposito);
         // exit;
-        $this->load->view('frame/a_header');
-        $this->load->view('frame/b_nav',$data);
-        $this->load->view('page/riwayat/list_deposito',$data);
-        $this->load->view('frame/d_footer');      
+        // $this->load->view('frame/a_header');
+        // $this->load->view('frame/b_nav',$data);
+        // $this->load->view('page/riwayat/list_deposito',$data);
+        // $this->load->view('frame/d_footer');      
+
+        $this->load->view('page_dana/frame/header');
+        $this->load->view('page_dana/frame/nav-putih',$data);
+        $this->load->view('page_dana/riwayat/deposito',$data);
+        $this->load->view('page_dana/frame/footer');   
     }
 
     function pdf_budy(){

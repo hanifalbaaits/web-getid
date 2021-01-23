@@ -46,7 +46,7 @@ class APIGetid extends CI_Model{
         }
     }
 
-    function createSession($storeid,$unix,$decode){
+    function createSession($storeid,$decode){
       $url = $this->url;
       $xml = 
       '<?xml version="1.0" encoding="utf-8"?>
@@ -54,7 +54,6 @@ class APIGetid extends CI_Model{
         <soap:Body>
           <Session_Create xmlns="http://tempuri.org/">
             <storeid>'.$storeid.'</storeid>
-            <date>'.$unix.'</date>
             <signature>'.$decode.'</signature>
           </Session_Create>
         </soap:Body>

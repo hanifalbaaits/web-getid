@@ -21,7 +21,8 @@ class Login extends CI_Controller {
 
     function index(){
         if($this->session->userdata("logcode") != $this->session_key){
-            $this->load->view('page/login');
+            // $this->load->view('page/login');
+            $this->load->view('page_dana/login');
         } else {
             redirect("home");
         }
@@ -29,7 +30,8 @@ class Login extends CI_Controller {
 
     function register(){
         if($this->session->userdata("logcode") != $this->session_key){
-            $this->load->view('page/register');
+            // $this->load->view('page/register');
+            $this->load->view('page_dana/register');
         } else {
             redirect("home");
         }
@@ -47,9 +49,9 @@ class Login extends CI_Controller {
         $time = strtotime($today);
         log_message('error', 'today: '.$today);
         log_message('error', 'time unix: '.$time);
-        $concat = $username.$password.$time;
+        $concat = $username.$password;
         $encrypt = hash('sha256',$concat);
-        $resp = $this->APIGetid->createSession($username, $time , $encrypt);
+        $resp = $this->APIGetid->createSession($username, $encrypt);
         log_message('error', 'create session : '.json_encode($resp));
         $sessionid = "";
         if ($resp == null) {
@@ -139,7 +141,7 @@ class Login extends CI_Controller {
                             $array=array('status' => '0','message' => 'Tidak dapat Login. Status Tidak Aktif');
                             $this->session->set_flashdata('message', $array);
                         } else {
-                            $this->setSession($respon1[0],$password,$sessionid);
+                            $this->setSession($respon1[0],$password,$sessionid,"default");
                         }
                     }
                 }
@@ -148,7 +150,7 @@ class Login extends CI_Controller {
         redirect('Login');
     }
 
-    function setSession($info,$password,$sessionid) {
+    function setSession($info,$password,$sessionid,$platform) {
         $xx = $info->iduser.date('d/m/y/h/i').$this->session_key;
         $authorization = md5($xx);
         $sess_array = array(
@@ -169,6 +171,7 @@ class Login extends CI_Controller {
             'status' => "$info->status",
             'auth' => "$authorization",
             'sessionid' => "$sessionid",
+            'platform' => "$platform",
         );
         $this->session->set_userdata($sess_array);
     }
@@ -232,7 +235,8 @@ class Login extends CI_Controller {
         $fullname = $this->input->post('name');
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        // var_dump($fullname);var_dump($email);var_dump($password);
+        var_dump($fullname);var_dump($email);var_dump($password);
+        exit;
         $respon = $this->APIGetid->register($email,$password);
         // var_dump($respon);
         if ($respon == null) {
@@ -357,9 +361,9 @@ class Login extends CI_Controller {
             //disini buat session 
             $today = date("Y-m-d H:i:s");
             $time = strtotime($today);
-            $concat = $username.$password.$time;
+            $concat = $username.$password;
             $encrypt = hash('sha256',$concat);
-            $resp = $this->APIGetid->createSession($username, $time , $encrypt);
+            $resp = $this->APIGetid->createSession($username, $encrypt);
             log_message('error', 'create session : '.json_encode($resp));
 
             $sessionid = "";
@@ -453,7 +457,7 @@ class Login extends CI_Controller {
                                 $array=array('status' => '0','message' => 'Tidak dapat Login. Status Tidak Aktif');
                                 $this->session->set_flashdata('message', $array);
                             } else {
-                                $this->setSession($respon1[0],$password,$sessionid);
+                                $this->setSession($respon1[0],$password,$sessionid,"google");
                             }
                         }
                     }

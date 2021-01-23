@@ -37,13 +37,26 @@ class Home extends CI_Controller{
 
         $rsp = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
         $last_transaction = json_decode(json_encode($respon1));
+
+        if (strpos(explode('|',$rsp)[1], 'expired') !== false) {
+            $this->session->sess_destroy();
+            $array=array('status' => '0','message' => $this->respon_session);
+            $this->session->set_flashdata('message', $array);
+            redirect('login');
+        }
+
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['data'] = $last_transaction;
-        $this->load->view('frame/a_header');
-        $this->load->view('frame/b_nav',$data);
-        $this->load->view('page/dashboard',$data);
-        $this->load->view('frame/d_footer');     
+        // $this->load->view('frame/a_header');
+        // $this->load->view('frame/b_nav',$data);
+        // $this->load->view('page/dashboard',$data);
+        // $this->load->view('frame/d_footer');   
+        
+        $this->load->view('page_dana/frame/header');
+        $this->load->view('page_dana/frame/nav',$data);
+        $this->load->view('page_dana/home',$data);
+        $this->load->view('page_dana/frame/footer');
     }
 
     function configXXX() {

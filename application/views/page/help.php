@@ -22,7 +22,7 @@
         <!-- wrap @s -->
         <div class="nk-wrap ">
             <!-- main header @s -->
-            <div class="nk-header nk-header-fluid is-theme">
+            <div class="nk-header nk-header-fluid is-theme" style="background-color : #089aeb">
                 <div class="container-xl wide-xl">
                     <div class="nk-header-wrap">
                         <div class="nk-menu-trigger mr-sm-2 d-lg-none">
