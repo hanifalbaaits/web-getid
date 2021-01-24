@@ -57,7 +57,7 @@ class Profile extends CI_Controller{
         // $this->load->view('frame/d_footer');   
         
         $this->load->view('page_dana/frame/header');
-        $this->load->view('page_dana/frame/nav',$data);
+        $this->load->view('page_dana/frame/nav-putih',$data);
         $this->load->view('page_dana/profile');
         $this->load->view('page_dana/frame/footer');   
     }
