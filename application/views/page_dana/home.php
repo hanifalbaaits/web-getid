@@ -1,3 +1,6 @@
+<!-- <div class="parent">
+    <img class="img-pojok" src="<?php echo base_url(); ?>assets_dana/Group 1.png" alt="">
+</div> -->
 <div class="beranda d-flex justify-content-between pt-3">
     <div class="saldo">
         <img style="width: 450px; margin: 120px 0 0 0;" src="<?php echo base_url(); ?>assets_dana/Group 306@2x.png"
@@ -16,16 +19,22 @@
             </div>
         </div>
     </div>
-    <div class="pr-4">
-        <img style="width: 350px;" src="<?php echo base_url(); ?>assets_dana/Group 241@2x.png" alt="">
+    <div class="pt-5" style="padding-right: 100px;">
+        <img style="width: 350px;" src="<?php echo base_url(); ?>assets_dana/loncat.png" alt="">
     </div>
 </div>
+
 <div class="text-center" onclick="scrollto('trans');" style="cursor: pointer; position: relative; top: -20px;">
-    Transaksi <br>
-    Terakhir <br>
-    <i class="fas fa-angle-down"></i>
+    <div class="parent">
+        <img class="img-transaksi" src="<?php echo base_url(); ?>assets_dana/gel-home.png" alt="">
+        <div class="trans-last">
+            Transaksi <br>
+            Terakhir <br>
+            <i class="fas fa-angle-down"></i>
+        </div>
+    </div>
 </div>
-<div id="trans" style="background-color: whitesmoke; color: black; padding: 50px 100px ;">
+<div id="trans" style="background-color: #f9f9f9; color: black; padding: 50px 100px ;">
     <!-- <table class="table" style="background-color: white;">
         <thead>
             <tr>
@@ -270,7 +279,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="detailTrx" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -279,69 +287,117 @@
                 <h5 class="modal-title w-100 text-center" id="exampleModalLabel">
                     <span>Detail Transaksi</span>
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </button> -->
             </div>
-            <div class="modal-body" style="font-size: 15px; color: black;">
-                <div class="pt-3 d-flex justify-content-between">
-                    <div>No. Referensi</div>
-                    <div id="referensi"></div>
-
-                    <div>Transaksi ID</div>
-                    <div id="transaksi"></div>
-
-                    <div>Produk</div>
-                    <div id="produk"></div>
-
-                    <div>Deskripsi</div>
-                    <div id="deskripsi"></div>
-
-                    <div>Nomor Tujuan</div>
-                    <div id="nomor"></div>
-
-                    <div>Status</div>
-                    <div><span class="badge badge-success" id="status" style="color:white"></span>
+            <div class="modal-body" style="padding: 0 40px; font-size: 15px; color:black;">
+                <div class="pt-5 pr-5 d-flex justify-content-between">
+                    <div>
+                        <div>
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                No. Referensi
+                            </div>
+                            <div>
+                                k2828292nn
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Produk
+                            </div>
+                            <div>
+                                XLD150
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Nomor Tujuan
+                            </div>
+                            <div>
+                                0288729992
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Nomor Serial
+                            </div>
+                            <div>
+                                XXX
+                            </div>
+                        </div>
                     </div>
-
-                    <div>Nomor Serial</div>
-                    <div id="serial"></div>
-
-                    <div>Tanggal Transaksi</div>
-                    <div id="tgl"></div>
-
+                    <div>
+                        <div>
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Transaksi ID
+                            </div>
+                            <div>
+                                11182777829
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Deskripsi
+                            </div>
+                            <div>
+                                XL Data 1 5gb 30hr
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Status
+                            </div>
+                            <div>
+                                gagal
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Tanggal Transaksi
+                            </div>
+                            <div>
+                                23 Januari 2021
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <hr style="border: solid #d8d8d8 1px;">
                 </div>
-                <div class="pt-3 d-flex justify-content-between">
+                <div class="d-flex justify-content-between">
                     <div>
                         Metode Pembayaran
                     </div>
                     <div>
-                        Saldo GetId
+                        Saldo Get ID
                     </div>
                 </div>
-                <div class="pt-3 d-flex justify-content-between">
+                <div>
+                    <hr style="border: solid #d8d8d8 1px;">
+                </div>
+                <div class="d-flex justify-content-between">
                     <div>
                         Biaya Transaksi
                     </div>
-                    <div id="biaya"></div>
+                    <div>
+                        17.000
+                    </div>
                 </div>
-                <div class="pt-3 d-flex justify-content-between">
+                <div>
+                    <hr style="border: solid #d8d8d8 1px;">
+                </div>
+                <div class="d-flex justify-content-between" style="font-weight: 800;">
                     <div>
                         Total
                     </div>
-                    <div id="total"></div>
-                </div>
-                <div>
-                    <div class=" pb-5 d-flex justify-content-between">
-                        <div style="color: #d8d8d8; font-size: smaller;"></div>
-                        <div>
-                            <button data-dismiss="modal" class="lanjut">Oke</button>
-                        </div>
+                    <div>
+                        17.000
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button>
             </div>
         </div>
     </div>

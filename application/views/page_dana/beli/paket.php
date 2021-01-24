@@ -1,4 +1,4 @@
-<div class="beli d-flex justify-content-center" style="padding: 100px 100px;">
+<div class="beli d-flex justify-content-center pb-0" style="padding: 100px 100px;">
     <form method="post" action="<?php echo site_url('beli/trx_paket')?>">
         <div class="tabs ">
             <input type="radio" name="tabs" id="tabone" checked="checked">
@@ -96,6 +96,9 @@
     <div class="img-right p-5">
         <img style="width: width: 100%;" src="<?php echo base_url(); ?>assets_dana/Group 303@2x.png" alt="">
     </div>
+</div>
+<div class="parent">
+    <img class="img-gel" src="<?php echo base_url(); ?>assets_dana/gel.png" alt="">
 </div>
 
 <script type="text/javascript">

@@ -1,4 +1,4 @@
-<div class="beli d-flex justify-content-center" style="padding: 100px 100px;">
+<div class="beli d-flex justify-content-center pb-0" style="padding: 100px 100px;">
     <form method="post" action="<?php echo site_url('beli/trx_topup')?>">
         <div class="tabs ">
             <input type="radio" name="tabs" id="tabone" checked="checked">
@@ -146,6 +146,9 @@
             </div>
         </div>
     </div>
+</div>
+<div class="parent">
+    <img class="img-gel" src="<?php echo base_url(); ?>assets_dana/gel.png" alt="">
 </div>
 
 <?php if ($flag == true) { ?>

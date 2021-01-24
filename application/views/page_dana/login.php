@@ -27,6 +27,9 @@
     <header id="header" class="header">
     </header>
     <div>
+        <div class="parent">
+            <img class="img-pojok" src="<?php echo base_url(); ?>assets_dana/Group 1.png" alt="">
+        </div>
         <div class="content row col-12">
             <div class="col-5">
                 <div class="pb-3">
@@ -86,22 +89,17 @@
                     src="<?php echo base_url(); ?>assets_dana/Group 185@2x.png" alt="">
             </div>
         </div>
-
         <div class="parent">
-            <img class="image1" src="<?php echo base_url(); ?>assets_dana/Path 87@2x.png" alt="">
-            <img class="image2" src=" <?php echo base_url(); ?>assets_dana/Path 88@2x.png" alt="">
+            <img class="image1" src="<?php echo base_url(); ?>assets_dana/gel-login.png" alt="">
         </div>
     </div>
-    <footer id="footer">
-
-    </footer>
     <div class="modal fade" id="successmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="border: none;">
-                <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px;">
+                <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px; color: black;">
                     <div class="pt-5">
-                        <i style="font-size: 60px; color: #28a745;" class="far fa-check"></i>
+                        <i style="font-size: 60px; color: #28a745;" class="fas  fa-check-circle"></i>
                     </div>
                     <div class="pt-3">
                         Berhasil
@@ -127,9 +125,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="border: none;">
 
-                <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px;">
+                <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px; color: black;">
                     <div class="pt-5">
-                        <i style="font-size: 60px; color: #dc3545;" class="far fa-times"></i>
+                        <i style="font-size: 60px; color: red;" class="fas fa-times-circle"></i>
                     </div>
                     <div class="pt-3">
                         Gagal

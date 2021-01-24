@@ -116,7 +116,7 @@
                                                                     <a href="#"
                                                                         onClick="return detailTrx('<?php echo $dt->OriginalTransID; ?>','<?php echo $dt->TransID; ?>','<?php echo $dt->Barcode; ?>','<?php echo $des; ?>','<?php echo $dt->Phone; ?>','<?php echo $dt->Status; ?>','<?php echo $dt->SerialNumber; ?>','<?php echo $tgl; ?>','<?php echo $harga; ?>')"
                                                                         data-toggle="modal"
-                                                                        data-target="#detailTrx">Lihat</a>
+                                                                        data-target="#riwayat">Lihat</a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -259,91 +259,124 @@
 </div>
 
 <!-- Modal Form -->
-<div class="modal fade" tabindex="-1" id="detailTrx">
+<div class="modal fade" id="riwayat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Detail Transaksi</h5>
-                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                    <em class="icon ni ni-cross"></em>
-                </a>
+        <div class="modal-content" style="border: none;">
+            <div class="modal-header " style="background-color: #089aeb; color: white;">
+                <h5 class="modal-title w-100 text-center" id="exampleModalLabel">
+                    <span>Detail Transaksi</span>
+                </h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
             </div>
-            <div class="modal-body">
-                <div class="nk-iv-wg4">
-                    <div class="nk-iv-wg4-sub">
-                        <!-- <h6 class="nk-iv-wg4-title title">Your Investment Details</h6> -->
-                        <ul class="nk-iv-wg4-overview g-2">
-                            <li>
-                                <div class="sub-text">No. Referensi</div>
-                                <div class="lead-text" id="referensi"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Transaksi ID</div>
-                                <div class="lead-text" id="transaksi"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Produk</div>
-                                <div class="lead-text" id="produk"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Deskripsi</div>
-                                <div class="lead-text" id="deskripsi"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Nomor Tujuan</div>
-                                <div class="lead-text" id="nomor"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Status</div>
-                                <div class="lead-text"><span class="badge badge-success" id="status"
-                                        style="color:white"></span></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Nomor Serial</div>
-                                <div class="lead-text" id="serial"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Tanggal Transaksi</div>
-                                <div class="lead-text" id="tgl"></div>
-                            </li>
-                        </ul>
+            <div class="modal-body" style="padding: 0 40px; font-size: 15px;">
+                <div class="pt-5 pr-5 d-flex justify-content-between">
+                    <div>
+                        <div>
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                No. Referensi
+                            </div>
+                            <div>
+                                k2828292nn
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Produk
+                            </div>
+                            <div>
+                                XLD150
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Nomor Tujuan
+                            </div>
+                            <div>
+                                0288729992
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Nomor Serial
+                            </div>
+                            <div>
+                                XXX
+                            </div>
+                        </div>
                     </div>
-                    <div class="nk-iv-wg4-sub">
-                        <ul class="nk-iv-wg4-list">
-                            <li>
-                                <div class="sub-text">Metode Pembayaran</div>
-                                <div class="lead-text">Saldo GetID</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="nk-iv-wg4-sub">
-                        <ul class="nk-iv-wg4-list">
-                            <li>
-                                <div class="sub-text">Biaya Transaksi</div>
-                                <div class="lead-text" id="biaya"></div>
-                            </li>
-                            <!-- <li>
-                                <div class="sub-text">Pajak <span>(0%)</span></div>
-                                <div class="lead-text">Rp 0</div>
-                            </li> -->
-                        </ul>
-                    </div>
-                    <div class="nk-iv-wg4-sub">
-                        <ul class="nk-iv-wg4-list">
-                            <li>
-                                <div class="lead-text">Total</div>
-                                <div class="caption-text text-primary" id="total"></div>
-                            </li>
-                        </ul>
+                    <div>
+                        <div>
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Transaksi ID
+                            </div>
+                            <div>
+                                11182777829
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Deskripsi
+                            </div>
+                            <div>
+                                XL Data 1 5gb 30hr
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Status
+                            </div>
+                            <div>
+                                gagal
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <div style="color: #d8d8d8; font-size: smaller;">
+                                Tanggal Transaksi
+                            </div>
+                            <div>
+                                23 Januari 2021
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- </div> -->
-            </div>
-            <div class="modal-footer bg-light">
-                <!-- <span class="sub-text">Modal Footer Text</span> -->
-                <div class="form-group">
-                    <button type="submit" class="btn btn-lg btn-primary" data-dismiss="modal">Kembali</button>
+                <div>
+                    <hr style="border: solid #d8d8d8 1px;">
                 </div>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        Metode Pembayaran
+                    </div>
+                    <div>
+                        Saldo Get ID
+                    </div>
+                </div>
+                <div>
+                    <hr style="border: solid #d8d8d8 1px;">
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        Biaya Transaksi
+                    </div>
+                    <div>
+                        17.000
+                    </div>
+                </div>
+                <div>
+                    <hr style="border: solid #d8d8d8 1px;">
+                </div>
+                <div class="d-flex justify-content-between" style="font-weight: 800;">
+                    <div>
+                        Total
+                    </div>
+                    <div>
+                        17.000
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button>
             </div>
         </div>
     </div>

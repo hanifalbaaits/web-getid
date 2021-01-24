@@ -27,6 +27,9 @@
     <header id="header" class="header">
     </header>
     <div>
+        <div class="parent">
+            <img class="img-pojok" src="<?php echo base_url(); ?>assets_dana/Group 1.png" alt="">
+        </div>
         <div class="content-reg row col-12">
             <div class="col-5">
                 <div class="pb-3">
@@ -34,6 +37,8 @@
                 </div>
                 <div style="font-size: 27px;  font-weight: 500;">
                     Mau buat akun baru mu?,
+
+
                 </div>
                 <div class="pb-3" style="font-weight: 400;">
                     Silahkan daftarkan diri melalui form berikut
@@ -104,8 +109,7 @@
         </div>
 
         <div class="parent">
-            <img class="image1" src="<?php echo base_url(); ?>assets_dana/Path 87@2x.png" alt="">
-            <!-- <img class="image2" src=" <?php echo base_url(); ?>assets_dana/Path 88@2x.png" alt=""> -->
+            <img class="image1" src="<?php echo base_url(); ?>assets_dana/gel-login.png" alt="">
         </div>
     </div>
     <!-- MODAL -->

@@ -1,6 +1,6 @@
-<footer class="footer">
+<footer class="footer pt-0 mt-0">
     <div>
-        <hr style="background-color: grey;">
+        <hr class="pt-0 mt-0" style="background-color: grey;">
     </div>
     <div class="d-flex justify-content-between">
         <div style="color: black;">
@@ -26,9 +26,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border: none;">
 
-            <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px;">
+            <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px; color:black;">
                 <div class="pt-5">
-                    <i style="font-size: 60px; color: #da9f22;" class="far fa-clock"></i>
+                    <i style="font-size: 60px; color: #da9f22;" class="fas fa-clock"></i>
                 </div>
                 <div class="pt-3">
                     Mohon tunggu...
@@ -49,9 +49,9 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border: none;">
-            <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px;">
+            <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px; color:black;">
                 <div class="pt-5">
-                    <i style="font-size: 60px; color: #28a745;" class="far fa-check"></i>
+                    <i style="font-size: 60px; color: #28a745;" class="fas fa-check-circle"></i>
                 </div>
                 <div class="pt-3">
                     Berhasil
@@ -77,9 +77,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border: none;">
 
-            <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px;">
+            <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px; color:black;">
                 <div class="pt-5">
-                    <i style="font-size: 60px; color: #dc3545;" class="far fa-times"></i>
+                    <i style="font-size: 60px; color: #dc3545;" class="fas fa-times-circle"></i>
                 </div>
                 <div class="pt-3">
                     Gagal

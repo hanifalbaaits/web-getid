@@ -50,7 +50,7 @@
                             </div>
                             <div class="user-info">
                                 <span class="lead-text"><?php echo $this->session->userdata('storename'); ?></span>
-                                <span class="sub-text"><?php echo $this->session->userdata('storeid'); ?></span>
+                                <span><?php echo $this->session->userdata('storeid'); ?></span>
                             </div>
                             <!-- <div class="user-action">
                                          <a class="btn btn-icon mr-n2" href="html/invest/profile-setting.html"><em
@@ -69,11 +69,12 @@
                     </div>
                     <div class="dropdown-inner">
                         <ul class="link-list">
-                            <li><a href="<?php echo site_url("profile"); ?>"><em class="icon ni ni-user-alt"></em>
+                            <li><a class="drop-profil" href="<?php echo site_url("profile"); ?>"><em
+                                        class="icon ni ni-user-alt"></em>
                                     <span>Lihat Profile</span></a>
                             </li>
                             <?php if ($this->session->userdata('platform') == 'default') { ?>
-                            <li><a href="#" data-toggle="modal" data-target="#modalGP"><em
+                            <li><a class="drop-profil" href="#" data-toggle="modal" data-target="#modalGP"><em
                                         class="icon ni ni-setting-alt"></em><span>Ubah Kata
                                         Sandi</span></a></li>
                             <?php } ?>
@@ -87,7 +88,7 @@
                     </div>
                     <div class="dropdown-inner">
                         <ul class="link-list">
-                            <li><a href="<?php echo site_url("login/user_logout"); ?>"><em
+                            <li><a class="drop-profil" href="<?php echo site_url("login/user_logout"); ?>"><em
                                         class="icon ni ni-signout"></em><span>Keluar</span></a></li>
                         </ul>
                     </div>
