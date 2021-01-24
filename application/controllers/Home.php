@@ -48,6 +48,7 @@ class Home extends CI_Controller{
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['data'] = $last_transaction;
+        $data['nav_active'] = 'beranda';
         // $this->load->view('frame/a_header');
         // $this->load->view('frame/b_nav',$data);
         // $this->load->view('page/dashboard',$data);

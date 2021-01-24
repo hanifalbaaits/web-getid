@@ -79,6 +79,7 @@ class Riwayat extends CI_Controller{
         $data['deposito'] = $last_deposito;
         $data['msg'] = $msg;             
         $data['flag'] = $flg;   
+        $data['nav_active'] = 'riwayat';
         // $this->load->view('frame/a_header');
         // $this->load->view('frame/b_nav',$data);
         // $this->load->view('page/riwayat/list_transaksi',$data);

@@ -1,3 +1,11 @@
+<?php
+$nv_beranda = ""; $nv_beli = ""; $nv_topup = ""; $nv_riwayat = "";
+if ($nav_active == 'beranda') { $nv_beranda = "nav-active"; }
+if ($nav_active == 'beli') { $nv_beli = "nav-active"; }
+if ($nav_active == 'topup') { $nv_topup = "nav-active"; }
+if ($nav_active == 'riwayat') { $nv_riwayat = "nav-active"; }
+?>
+
 <body class="beli">
     <header id="header" class="header-beli" style="position: fixed;">
         <div class="pt-3 d-flex" style="color: black;">
@@ -5,12 +13,12 @@
                 <div>
                     <img style="height: 30px;" src="<?php echo base_url(); ?>assets_custom/nama_berwarna.png" alt="">
                 </div>
-                <div style="border-bottom:  #fbb040 2px solid;">
-                    <a class="nav-putih" href="<?php echo site_url("home"); ?>">
+                <div>
+                    <a class="nav-putih <?php echo $nv_beranda; ?>" href="<?php echo site_url("home"); ?>">
                         Beranda
                     </a>
                 </div>
-                <div class="angle dropdown nav-putih" style="cursor: pointer;">
+                <div class="angle dropdown nav-putih <?php echo $nv_beli; ?>" style="cursor: pointer;">
                     Beli
                     <i class="fas fa-angle-down"></i>
                     <i class="fas fa-angle-up"></i>
@@ -20,12 +28,12 @@
                     </div>
                 </div>
                 <div class="angel">
-                    <a class="nav-putih" href="<?php echo site_url("beli/topup"); ?>">
+                    <a class="nav-putih <?php echo $nv_topup; ?>" href="<?php echo site_url("beli/topup"); ?>">
                         Top Up Saldo
                     </a>
                 </div>
                 <div class="angle dropdown" style="cursor: pointer;">
-                    <a class="nav-putih" href="<?php echo site_url("riwayat/index"); ?>">
+                    <a class="nav-putih <?php echo $nv_riwayat; ?>" href="<?php echo site_url("riwayat/index"); ?>">
                         Riwayat
                     </a>
                     <!-- <i class="fas fa-angle-down"></i>

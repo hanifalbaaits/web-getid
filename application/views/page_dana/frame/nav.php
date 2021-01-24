@@ -1,3 +1,11 @@
+<?php
+$nv_beranda = ""; $nv_beli = ""; $nv_topup = ""; $nv_riwayat = "";
+if ($nav_active == 'beranda') { $nv_beranda = "nav-active"; }
+if ($nav_active == 'beli') { $nv_beli = "nav-active"; }
+if ($nav_active == 'topup') { $nv_topup = "nav-active"; }
+if ($nav_active == 'riwayat') { $nv_riwayat = "nav-active"; }
+?>
+
 <body>
     <header id="header" class="header-beranda" style="position: fixed;">
         <div class="pt-3 d-flex" style="">
@@ -7,12 +15,12 @@
                         <img style="height: 30px;" src="<?php echo base_url(); ?>assets_dana/logo get.id@2x.png"
                             alt=""></a>
                 </div>
-                <div class="nav-active">
+                <div class="<?php echo $nv_beranda; ?>">
                     <a href="<?php echo site_url("home"); ?>">
                         Beranda
                     </a>
                 </div>
-                <div class="angle dropdown" style="cursor: pointer;">
+                <div class="angle dropdown <?php echo $nv_beli; ?>" style="cursor: pointer;">
                     Beli
                     <i class="fas fa-angle-down"></i>
                     <i class="fas fa-angle-up"></i>
@@ -21,12 +29,12 @@
                         <a href="<?php echo site_url("beli/paket"); ?>">Paket Data</a>
                     </div>
                 </div>
-                <div class="angel">
+                <div class="angel <?php echo $nv_topup; ?>">
                     <a href="<?php echo site_url("beli/topup"); ?>">
                         Top Up Saldo
                     </a>
                 </div>
-                <div class="angle dropdown" style="cursor: pointer;">
+                <div class="angle dropdown <?php echo $nv_riwayat; ?>" style="cursor: pointer;">
                     <a href="<?php echo site_url("riwayat/index"); ?>">
                         Riwayat
                     </a>

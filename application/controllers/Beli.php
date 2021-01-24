@@ -45,6 +45,7 @@ class Beli extends CI_Controller{
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['product'] = $list_product;
+        $data['nav_active'] = 'beli';
         
         $sess_array = array(
             'list_product' => $list_product
@@ -88,6 +89,7 @@ class Beli extends CI_Controller{
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['product'] = $list_product;
+        $data['nav_active'] = 'beli';
 
         $sess_array = array(
             'list_product' => $list_product
@@ -138,6 +140,7 @@ class Beli extends CI_Controller{
         $data['flag'] = $flag;
         $data['time_topup'] = $time_topup;
         $data['nominal_topup'] = $nominal_topup;
+        $data['nav_active'] = 'topup';
         // $this->load->view('frame/a_header');
         // $this->load->view('frame/b_nav',$data);
         // $this->load->view('page/beli/topup',$data);
