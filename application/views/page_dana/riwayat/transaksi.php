@@ -1,7 +1,7 @@
 <div class="riwayat" style="padding: 100px 100px;">
     <div class="tabs ">
         <input type="radio" name="tabs" id="tabone" <?php if ($flag == 'transaksi') { echo 'checked="checked"'; } ?>>
-        <label for="tabone" style="margin-bottom: 0; max-height: 50px;">Transaksi</label>
+        <label class="label" for="tabone" style="margin-bottom: 0; max-height: 50px;">Transaksi</label>
         <div class="tab">
             <div class="pt-3 d-flex justify-content-between">
                 <div style="font-weight: bolder; font-size: larger;"></div>
@@ -134,7 +134,7 @@
             </div>
         </div>
         <input type="radio" name="tabs" id="tabtwo" <?php if ($flag == 'deposito') { echo 'checked="checked"'; } ?>>
-        <label for="tabtwo" style="margin-bottom: 0; max-height: 50px;">Deposito</label>
+        <label class="label" for="tabtwo" style="margin-bottom: 0; max-height: 50px;">Deposito</label>
         <div class="tab">
             <div class="pt-3 d-flex justify-content-between">
                 <div style="font-weight: bolder; font-size: larger;"></div>

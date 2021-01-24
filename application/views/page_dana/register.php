@@ -23,11 +23,11 @@
     <script src="<?php echo base_url(). "js/" ?>vendors/jquery/jquery.js"></script>
 </head>
 
-<body class="login">
+<body class="register">
     <header id="header" class="header">
     </header>
     <div>
-        <div class="content row col-12">
+        <div class="content-reg row col-12">
             <div class="col-5">
                 <div class="pb-3">
                     <img width="150" src="<?php echo base_url(); ?>assets_dana/logo get.id@2x.png" alt="">
@@ -43,34 +43,36 @@
                         Nama Lengkap
                     </div>
                     <div>
-                        <input class="text-center" id="name" name="name" type="text" placeholder="masukan nama lengkap"
-                            required>
+                        <input class="text-center py-1" id="name" name="name" type="text"
+                            placeholder="masukan nama lengkap" required>
                     </div>
                     <div>
                         Email
                     </div>
                     <div>
-                        <input class="text-center" id="email" name="email" type="email" placeholder="masukan email anda"
-                            required>
+                        <input class="text-center py-1" id="email" name="email" type="email"
+                            placeholder="masukan email anda" required>
                     </div>
-                    <div class="pt-3">
+                    <div class="">
                         Password
                     </div>
                     <div class="pb-3">
-                        <input class="text-center" id="password" name="password" type="password"
+                        <input class="text-center py-1" id="password" name="password" type="password"
                             placeholder="masukan password anda" required>
                         <i style="position: relative; left: -30px; color: black; cursor: pointer;"
                             onclick="myFunction(this)" class="fas fa-eye clk"></i>
                     </div>
-                    <div>
-                        <input type="checkbox" class="custom-control-input" id="checkbox">
-                        <label class="custom-control-label" for="checkbox">Saya Setuju dengan
+                    <div class="d-flex align-items-center">
+                        <input class="mr-1" style="width: fit-content;" id="checkbox-1" name="checkbox-1"
+                            type="checkbox">
+                        <label class="mb-0" for="checkbox-1" style="font-size: 12px;">
+                            Saya Setuju dengan
                             <a class="create" tabindex="-1" href="<?php echo site_url('Help/terms_policy');?>">Syarat
-                                &amp;
-                                Ketentuan</a></label>
+                                &amp; Ketentuan</a>
+                        </label>
                     </div>
-                    <div>
-                        <button class="masuk" type="submit" onclick="return check_privacy()">Daftar</button>
+                    <div class="pt-1">
+                        <button class="masuk py-1" type="submit" onclick="return check_privacy()">Daftar</button>
                     </div>
 
                 </form>
@@ -88,7 +90,7 @@
                 </div>
                 <div>
                     <a href="<?php echo site_url('login/oauthg')?>">
-                        <span class="google">
+                        <span class="google py-1">
                             <i class="fab fa-google"></i>
                             Daftar dengan Akun Google
                         </span>
@@ -103,12 +105,9 @@
 
         <div class="parent">
             <img class="image1" src="<?php echo base_url(); ?>assets_dana/Path 87@2x.png" alt="">
-            <img class="image2" src=" <?php echo base_url(); ?>assets_dana/Path 88@2x.png" alt="">
+            <!-- <img class="image2" src=" <?php echo base_url(); ?>assets_dana/Path 88@2x.png" alt=""> -->
         </div>
     </div>
-    <footer id="footer">
-
-    </footer>
     <!-- MODAL -->
     <!-- Modal Success -->
     <div class="modal fade" tabindex="-1" id="successmodal">

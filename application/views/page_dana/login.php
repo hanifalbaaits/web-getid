@@ -43,20 +43,20 @@
                         Email
                     </div>
                     <div>
-                        <input class="text-center" name='username' id='username' type="email"
+                        <input class="text-center py-1" name='username' id='username' type="email"
                             placeholder="masukan email anda" required>
                     </div>
                     <div class="pt-3">
                         Password
                     </div>
                     <div class="pb-3">
-                        <input class="text-center" name="password" id='password' type="password"
+                        <input class="text-center py-1" name="password" id='password' type="password"
                             placeholder="masukan password anda" required>
                         <i style="position: relative; left: -30px; color: black; cursor: pointer;"
                             onclick="myFunction(this)" class="fas fa-eye clk"></i>
                     </div>
                     <div>
-                        <button class="masuk" type="submit">Masuk</button>
+                        <button class="masuk py-1" type="submit">Masuk</button>
                     </div>
 
                 </form>
@@ -74,7 +74,7 @@
                 </div>
                 <div>
                     <a href="<?php echo site_url('login/oauthg')?>">
-                        <span class="google">
+                        <span class="google py-1">
                             <i class="fab fa-google"></i>
                             Masuk Dengan Akun Google
                         </span>

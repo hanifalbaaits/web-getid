@@ -7,7 +7,7 @@
                         <img style="height: 30px;" src="<?php echo base_url(); ?>assets_dana/logo get.id@2x.png"
                             alt=""></a>
                 </div>
-                <div class="nav-active" style="border-bottom:  #fbb040 2px solid;">
+                <div class="nav-active">
                     <a href="<?php echo site_url("home"); ?>">
                         Beranda
                     </a>
@@ -53,6 +53,7 @@
                             <div class="user-info">
                                 <span class="lead-text"><?php echo $this->session->userdata('storename'); ?></span>
                                 <span class="sub-text"><?php echo $this->session->userdata('storeid'); ?></span>
+
                             </div>
                             <!-- <div class="user-action">
                                          <a class="btn btn-icon mr-n2" href="html/invest/profile-setting.html"><em

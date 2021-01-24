@@ -96,15 +96,15 @@
                 </div>
             </div>
             <div class="nk-tb-list">
-                <div class="nk-tb-item nk-tb-head">
-                    <div class="nk-tb-col"><span>No. Referensi</span></div>
-                    <div class="nk-tb-col"><span>Tanggal Transaksi</span></div>
-                    <div class="nk-tb-col"><span>Kode Produk</span></div>
-                    <div class="nk-tb-col"><span>Deskripsi</span></div>
-                    <div class="nk-tb-col"><span>Nomor Tujuan</span></div>
-                    <div class="nk-tb-col"><span>Harga</span></div>
-                    <div class="nk-tb-col"><span>Status</span></div>
-                    <div class="nk-tb-col"><span></span></div>
+                <div class="nk-tb-item nk-tb-head table-head">
+                    <div class="nk-tb-col "><span class="sub-text">No. Referensi</span></div>
+                    <div class="nk-tb-col "><span class="sub-text">Tanggal Transaksi</span></div>
+                    <div class="nk-tb-col "><span class="sub-text">Kode Produk</span></div>
+                    <div class="nk-tb-col "><span class="sub-text">Deskripsi</span></div>
+                    <div class="nk-tb-col "><span class="sub-text">Nomor Tujuan</span></div>
+                    <div class="nk-tb-col "><span class="sub-text">Harga</span></div>
+                    <div class="nk-tb-col "><span class="sub-text">Status</span></div>
+                    <div class="nk-tb-col "><span class="sub-text"></span></div>
                 </div>
                 <?php if (count($data) == 0) { ?>
                 <div class="nk-tb-item">

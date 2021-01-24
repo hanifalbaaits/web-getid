@@ -1,16 +1,16 @@
 <body class="beli">
     <header id="header" class="header-beli" style="position: fixed;">
-        <div class="pt-3 d-flex" style="">
+        <div class="pt-3 d-flex" style="color: black;">
             <div class="head-left d-flex">
                 <div>
                     <img style="height: 30px;" src="<?php echo base_url(); ?>assets_custom/nama_berwarna.png" alt="">
                 </div>
                 <div style="border-bottom:  #fbb040 2px solid;">
-                    <a href="<?php echo site_url("home"); ?>">
+                    <a class="nav-putih" href="<?php echo site_url("home"); ?>">
                         Beranda
                     </a>
                 </div>
-                <div class="angle dropdown" style="cursor: pointer;">
+                <div class="angle dropdown nav-putih" style="cursor: pointer;">
                     Beli
                     <i class="fas fa-angle-down"></i>
                     <i class="fas fa-angle-up"></i>
@@ -20,12 +20,12 @@
                     </div>
                 </div>
                 <div class="angel">
-                    <a href="<?php echo site_url("beli/topup"); ?>">
+                    <a class="nav-putih" href="<?php echo site_url("beli/topup"); ?>">
                         Top Up Saldo
                     </a>
                 </div>
                 <div class="angle dropdown" style="cursor: pointer;">
-                    <a href="<?php echo site_url("riwayat/index"); ?>">
+                    <a class="nav-putih" href="<?php echo site_url("riwayat/index"); ?>">
                         Riwayat
                     </a>
                     <!-- <i class="fas fa-angle-down"></i>

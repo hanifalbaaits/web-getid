@@ -1,13 +1,12 @@
 <div class="beli d-flex justify-content-center" style="padding: 100px 100px;">
-    <!-- <div > -->
-    <form class="tabs" method="post" action="<?php echo site_url('beli/trx_pulsa')?>">
-        <div>
+    <form action="#">
+        <div class="tabs ">
             <input type="radio" name="tabs" id="tabone" checked="checked">
-            <label for="tabone" style="margin-bottom: 0;">Pulsa</label>
+            <label class="label" style="margin-bottom: 0;">Pulsa</label>
             <div class="tab" style="padding-right: 200px;">
                 <div class="pt-3">
                     <span>Masukan Nomor Tujuan</span>
-                    <input type="number" placeholder="Masukan Nomor Tujuan"
+                    <input type="number" placeholder="Masukan Nomor Tujuan" required
                         style="border: 2px solid #dddddd; padding: 5px 10px; width: 100%;">
                     <div style="color: #d3cbcb;">
                         Masukan Nomor Tujuan ex: 08790xxxxx
@@ -16,14 +15,14 @@
                 <div class="pt-3">
                     <span>Pilih Pulsa</span>
                     <div>
-                        <select class="custom-select" id="inputGroupSelect01">
+                        <select class="custom-select" id="inputGroupSelect01" required>
                             <option selected>Pilih Pulsa</option>
                             <option value="1">L</option>
                             <option value="2">P</option>
                         </select>
                     </div>
                     <div style="color: #d3cbcb;">
-                        Pilih pulsa yang diinginkan
+                        Pilih pulsa data yang diinginkan
                     </div>
                 </div>
                 <div class="d-flex justify-content-between pt-3 pb-5">
@@ -33,10 +32,19 @@
                         </div>
                         <input type="text" style="border: 2px solid #dddddd; padding: 5px 10px; width: 40%;" readonly>
                     </div>
+                    <div style="position: relative;">
+                        <div style="visibility: hidden;">
+                            |
+                        </div>
+
+                        <label class="lanjut" for="tabtwo">Lanjut</label>
+
+                    </div>
                 </div>
             </div>
+
             <input type="radio" name="tabs" id="tabtwo">
-            <label for="tabtwo" style="margin-bottom: 0;">Konfirmasi Pembayaran</label>
+            <label class="label" style="margin-bottom: 0;">Konfirmasi Pembayaran</label>
             <div class="tab" style="padding-right: 200px;">
                 <div class="pt-5">
                     <div>
@@ -62,25 +70,20 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="tab" style="padding-right: 200px;">
                 <div class="d-flex pt-3 pb-5">
                     <div class="pr-3">
-                        <button class="lanjut" data-toggle="modal" data-target="#exampleModal">
+                        <button type="submit" class="lanjut">
                             Kirim
                         </button>
                     </div>
                     <div>
-                        <button class="kembali">
-                            Kembali
-                        </button>
+                        <label class="kembali" for="tabone">Kembali</label>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-    <!-- </div> -->
     <div class="img-right p-5">
-        <img style="width: 350px;" src="<?php echo base_url(); ?>assets_dana/Group 303@2x.png" alt="">
+        <img style="width: 100%;" src="<?php echo base_url(); ?>assets_dana/Group 303@2x.png" alt="">
     </div>
 </div>
