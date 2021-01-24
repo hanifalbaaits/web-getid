@@ -45,6 +45,12 @@ class Beli extends CI_Controller{
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['product'] = $list_product;
+        
+        $sess_array = array(
+            'list_product' => $list_product
+        );
+        $this->session->set_userdata($sess_array);
+        
         // $this->load->view('frame/a_header');
         // $this->load->view('frame/b_nav',$data);
         // $this->load->view('page/beli/pulsa',$data);
@@ -82,6 +88,12 @@ class Beli extends CI_Controller{
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] = (int) $saldo;
         $data['product'] = $list_product;
+
+        $sess_array = array(
+            'list_product' => $list_product
+        );
+        $this->session->set_userdata($sess_array);
+
         // $this->load->view('frame/a_header');
         // $this->load->view('frame/b_nav',$data);
         // $this->load->view('page/beli/paket',$data);
@@ -172,9 +184,9 @@ class Beli extends CI_Controller{
         log_message('error', '========================');
         // $saldo = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
         // var_dump($respon);
-        $array=array('status' => '1','message' => 'Transaksi sedang di Proses..');
+        $array=array('status' => '3','message' => 'Transaksi sedang di Proses..');
         $this->session->set_flashdata('message', $array);
-        redirect("riwayat/transaksi");
+        redirect("riwayat/index");
     }
 
     function trx_paket(){
@@ -211,9 +223,9 @@ class Beli extends CI_Controller{
         
         // $saldo = (string) $respon[0]->Balance_User_selectResponse->Balance_User_selectResult;
         // var_dump($respon);
-        $array=array('status' => '1','message' => 'Transaksi sedang di Proses..');
+        $array=array('status' => '3','message' => 'Transaksi sedang di Proses..');
         $this->session->set_flashdata('message', $array);
-        redirect("riwayat/transaksi");
+        redirect("riwayat/index");
     }
 
     function trx_topup(){
@@ -249,6 +261,19 @@ class Beli extends CI_Controller{
             $this->session->set_flashdata('message', $array);
             redirect('beli/topup');
         }
+    }
+
+    function getHarga(){
+        $id = $this->input->post('id');
+        $products = $this->session->userdata('list_product');
+        $harga = number_format(0, 0, ',', '.');
+        foreach ($products as $pro) {
+          if($pro->barcode == $id){
+            $harga = "Rp ".number_format($pro->price, 0, ',', '.');
+            break;
+          } 
+        }
+        echo $harga;
     }
 }
 ?>

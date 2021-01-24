@@ -181,7 +181,7 @@
 </div>
 
 <!-- Modal Form -->
-<div class="modal fade" tabindex="-1" id="detailTrx">
+<div class="modal fade" tabindex="-1" id="detailTrxx">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -265,6 +265,82 @@
                 <!-- <span class="sub-text">Modal Footer Text</span> -->
                 <div class="form-group">
                     <button type="submit" class="btn btn-lg btn-primary" data-dismiss="modal">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detailTrx" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border: none;">
+            <div class="modal-header " style="background-color: #089aeb; color: white;">
+                <h5 class="modal-title w-100 text-center" id="exampleModalLabel">
+                    <span>Detail Transaksi</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="font-size: 15px; color: black;">
+                <div class="pt-3 d-flex justify-content-between">
+                    <div>No. Referensi</div>
+                    <div id="referensi"></div>
+
+                    <div>Transaksi ID</div>
+                    <div id="transaksi"></div>
+
+                    <div>Produk</div>
+                    <div id="produk"></div>
+
+                    <div>Deskripsi</div>
+                    <div id="deskripsi"></div>
+
+                    <div>Nomor Tujuan</div>
+                    <div id="nomor"></div>
+
+                    <div>Status</div>
+                    <div><span class="badge badge-success" id="status" style="color:white"></span>
+                    </div>
+
+                    <div>Nomor Serial</div>
+                    <div id="serial"></div>
+
+                    <div>Tanggal Transaksi</div>
+                    <div id="tgl"></div>
+
+                </div>
+                <div>
+                    <hr style="border: solid #d8d8d8 1px;">
+                </div>
+                <div class="pt-3 d-flex justify-content-between">
+                    <div>
+                        Metode Pembayaran
+                    </div>
+                    <div>
+                        Saldo GetId
+                    </div>
+                </div>
+                <div class="pt-3 d-flex justify-content-between">
+                    <div>
+                        Biaya Transaksi
+                    </div>
+                    <div id="biaya"></div>
+                </div>
+                <div class="pt-3 d-flex justify-content-between">
+                    <div>
+                        Total
+                    </div>
+                    <div id="total"></div>
+                </div>
+                <div>
+                    <div class=" pb-5 d-flex justify-content-between">
+                        <div style="color: #d8d8d8; font-size: smaller;"></div>
+                        <div>
+                            <button data-dismiss="modal" class="lanjut">Oke</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

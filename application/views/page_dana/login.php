@@ -95,26 +95,23 @@
     <footer id="footer">
 
     </footer>
-    <!-- MODAL -->
-    <!-- Modal Success -->
     <div class="modal fade" id="successmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="border: none;">
-
                 <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px;">
                     <div class="pt-5">
-                        <i style="font-size: 60px; color: #28d468;" class="far fa-check"></i>
+                        <i style="font-size: 60px; color: #28a745;" class="far fa-check"></i>
                     </div>
                     <div class="pt-3">
                         Berhasil
                     </div>
                     <div>
                         <?php
-                        if ($this->session->flashdata('message') != null) {
-                            echo json_decode(json_encode($this->session->flashdata('message')))->message; 
-                        } 
-                        ?>
+                    if ($this->session->flashdata('message') != null) {
+                        echo json_decode(json_encode($this->session->flashdata('message')))->message; 
+                    } 
+                    ?>
                     </div>
                     <div class="pt-3 pb-5">
                         <button type="button" class="lanjut" data-dismiss="modal">Oke</button>
@@ -124,7 +121,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal Danger -->
+
     <div class="modal fade" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -132,17 +129,17 @@
 
                 <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px;">
                     <div class="pt-5">
-                        <i style="font-size: 60px; color: #bd2130;" class="far fa-times"></i>
+                        <i style="font-size: 60px; color: #dc3545;" class="far fa-times"></i>
                     </div>
                     <div class="pt-3">
                         Gagal
                     </div>
                     <div>
                         <?php
-                        if ($this->session->flashdata('message') != null) {
-                            echo json_decode(json_encode($this->session->flashdata('message')))->message; 
-                        } 
-                        ?>
+                    if ($this->session->flashdata('message') != null) {
+                        echo json_decode(json_encode($this->session->flashdata('message')))->message; 
+                    } 
+                    ?>
                     </div>
                     <div class="pt-3 pb-5">
                         <button type="button" class="lanjut" data-dismiss="modal">Oke</button>
@@ -177,7 +174,6 @@
             x.type = "password";
         }
         dana.classList.toggle("fa-eye-slash");
-
     }
     </script>
     <script src="<?php echo base_url(); ?>assets/js/bundle.js?ver=1.9.2"></script>

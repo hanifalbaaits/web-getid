@@ -80,5 +80,11 @@ class Home extends CI_Controller{
         echo "DEVICE INFO : ".$ip_info."<br />";
     }
 
+    function test_modal(){
+        $array=array('status' => '3','message' => 'Tidak dapat Login. Status Tidak Aktif');
+        $this->session->set_flashdata('message', $array);
+        redirect('home');
+    }
+
 }
 ?>

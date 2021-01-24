@@ -110,61 +110,57 @@
     </div>
     <!-- MODAL -->
     <!-- Modal Success -->
-    <div class="modal fade" tabindex="-1" id="successmodal">
+    <div class="modal fade" id="successmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross"></em></a>
-                <div class="modal-body modal-body-lg text-center">
-                    <div class="nk-modal">
-                        <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-check bg-success"></em>
-                        <h4 class="nk-modal-title">Berhasil!</h4>
-                        <div class="nk-modal-text">
-                            <div class="caption-text">
-                                <?php
-                                if ($this->session->flashdata('message') != null) {
-                                    echo json_decode(json_encode($this->session->flashdata('message')))->message; 
-                                } 
-                                ?>
-                            </div>
-                            <!-- <span class="sub-text-sm">Learn when you reciveve bitcoin in your wallet. <a href="#"> Click
-                                    here</a></span> -->
-                        </div>
-                        <div class="nk-modal-action">
-                            <a href="#" class="btn btn-lg btn-mw btn-primary" data-dismiss="modal">Oke</a>
-                        </div>
+            <div class="modal-content" style="border: none;">
+                <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px;">
+                    <div class="pt-5">
+                        <i style="font-size: 60px; color: #28a745;" class="far fa-check"></i>
                     </div>
-                </div><!-- .modal-body -->
-                <!-- <div class="modal-footer bg-lighter">
-                    <div class="text-center w-100">
-                        <p>Earn upto $25 for each friend your refer! <a href="#">Invite friends</a></p>
+                    <div class="pt-3">
+                        Berhasil
                     </div>
-                </div> -->
+                    <div>
+                        <?php
+                    if ($this->session->flashdata('message') != null) {
+                        echo json_decode(json_encode($this->session->flashdata('message')))->message; 
+                    } 
+                    ?>
+                    </div>
+                    <div class="pt-3 pb-5">
+                        <button type="button" class="lanjut" data-dismiss="modal">Oke</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-    <!-- Modal Danger -->
-    <div class="modal fade" tabindex="-1" id="warningmodal">
+
+    <div class="modal fade" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body modal-body-lg text-center">
-                    <div class="nk-modal">
-                        <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-cross bg-danger"></em>
-                        <h4 class="nk-modal-title">Maaf Gagal!</h4>
-                        <div class="nk-modal-text">
-                            <p class="lead">
-                                <?php
-                                if ($this->session->flashdata('message') != null) {
-                                    echo json_decode(json_encode($this->session->flashdata('message')))->message; 
-                                } 
-                                ?>
-                            </p>
-                            <!-- <p class="text-soft">Jika kamu memerlukan bantuan hubungi kami di (813) 86111-891.</p> -->
-                        </div>
-                        <div class="nk-modal-action mt-5">
-                            <a href="#" class="btn btn-lg btn-mw btn-light" data-dismiss="modal">Kembali</a>
-                        </div>
+            <div class="modal-content" style="border: none;">
+
+                <div class="modal-body text-center" style="padding: 0 40px; font-size: 15px;">
+                    <div class="pt-5">
+                        <i style="font-size: 60px; color: #dc3545;" class="far fa-times"></i>
                     </div>
-                </div><!-- .modal-body -->
+                    <div class="pt-3">
+                        Gagal
+                    </div>
+                    <div>
+                        <?php
+                    if ($this->session->flashdata('message') != null) {
+                        echo json_decode(json_encode($this->session->flashdata('message')))->message; 
+                    } 
+                    ?>
+                    </div>
+                    <div class="pt-3 pb-5">
+                        <button type="button" class="lanjut" data-dismiss="modal">Oke</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

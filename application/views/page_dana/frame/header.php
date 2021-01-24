@@ -20,4 +20,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+
+    <script src="<?php echo base_url(). "js/" ?>vendors/jquery/jquery.js"></script>
 </head>
