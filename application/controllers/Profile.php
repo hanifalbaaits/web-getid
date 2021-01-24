@@ -50,6 +50,7 @@ class Profile extends CI_Controller{
 
         $saldo = explode('|',$rsp)[0];
         $data['saldo'] =(int) $saldo;
+        $data['nav_active'] = 'profile';
 
         // $this->load->view('frame/a_header');
         // $this->load->view('frame/b_nav',$data);

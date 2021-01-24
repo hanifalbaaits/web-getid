@@ -270,40 +270,32 @@
                     <span aria-hidden="true">&times;</span>
                 </button> -->
             </div>
-            <div class="modal-body" style="padding: 0 40px; font-size: 15px;">
+            <div class="modal-body" style="padding: 0 40px; font-size: 15px; color:black;">
                 <div class="pt-5 pr-5 d-flex justify-content-between">
                     <div>
                         <div>
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 No. Referensi
                             </div>
-                            <div>
-                                k2828292nn
-                            </div>
+                            <div id="referensi"></div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Produk
                             </div>
-                            <div>
-                                XLD150
-                            </div>
+                            <div id="produk"></div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Nomor Tujuan
                             </div>
-                            <div>
-                                0288729992
-                            </div>
+                            <div id="nomor"></div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Nomor Serial
                             </div>
-                            <div>
-                                XXX
-                            </div>
+                            <div id="serial"></div>
                         </div>
                     </div>
                     <div>
@@ -311,33 +303,27 @@
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Transaksi ID
                             </div>
-                            <div>
-                                11182777829
-                            </div>
+                            <div id="transaksi"></div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Deskripsi
                             </div>
-                            <div>
-                                XL Data 1 5gb 30hr
-                            </div>
+                            <div id="deskripsi"></div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Status
                             </div>
                             <div>
-                                gagal
+                                <span class="badge badge-success" id="status" style="color:white"></span>
                             </div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Tanggal Transaksi
                             </div>
-                            <div>
-                                23 Januari 2021
-                            </div>
+                            <div id="tgl"></div>
                         </div>
                     </div>
                 </div>
@@ -359,9 +345,7 @@
                     <div>
                         Biaya Transaksi
                     </div>
-                    <div>
-                        17.000
-                    </div>
+                    <div id="biaya"></div>
                 </div>
                 <div>
                     <hr style="border: solid #d8d8d8 1px;">
@@ -370,11 +354,10 @@
                     <div>
                         Total
                     </div>
-                    <div>
-                        17.000
-                    </div>
+                    <div id="total"></div>
                 </div>
             </div>
+            <br />
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button>
             </div>

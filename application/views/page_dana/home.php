@@ -189,96 +189,6 @@
     </div>
 </div>
 
-<!-- Modal Form -->
-<div class="modal fade" tabindex="-1" id="detailTrxx">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Detail Transaksi</h5>
-                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                    <em class="icon ni ni-cross"></em>
-                </a>
-            </div>
-            <div class="modal-body">
-                <div class="nk-iv-wg4">
-                    <div class="nk-iv-wg4-sub">
-                        <!-- <h6 class="nk-iv-wg4-title title">Your Investment Details</h6> -->
-                        <ul class="nk-iv-wg4-overview g-2">
-                            <li>
-                                <div class="sub-text">No. Referensi</div>
-                                <div class="lead-text" id="referensi"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Transaksi ID</div>
-                                <div class="lead-text" id="transaksi"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Produk</div>
-                                <div class="lead-text" id="produk"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Deskripsi</div>
-                                <div class="lead-text" id="deskripsi"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Nomor Tujuan</div>
-                                <div class="lead-text" id="nomor"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Status</div>
-                                <div class="lead-text"><span class="badge badge-success" id="status"
-                                        style="color:white"></span></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Nomor Serial</div>
-                                <div class="lead-text" id="serial"></div>
-                            </li>
-                            <li>
-                                <div class="sub-text">Tanggal Transaksi</div>
-                                <div class="lead-text" id="tgl"></div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="nk-iv-wg4-sub">
-                        <ul class="nk-iv-wg4-list">
-                            <li>
-                                <div class="sub-text">Metode Pembayaran</div>
-                                <div class="lead-text">Saldo GetID</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="nk-iv-wg4-sub">
-                        <ul class="nk-iv-wg4-list">
-                            <li>
-                                <div class="sub-text">Biaya Transaksi</div>
-                                <div class="lead-text" id="biaya"></div>
-                            </li>
-                            <!-- <li>
-                                <div class="sub-text">Pajak <span>(0%)</span></div>
-                                <div class="lead-text">Rp 0</div>
-                            </li> -->
-                        </ul>
-                    </div>
-                    <div class="nk-iv-wg4-sub">
-                        <ul class="nk-iv-wg4-list">
-                            <li>
-                                <div class="lead-text">Total</div>
-                                <div class="caption-text text-primary" id="total"></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- </div> -->
-            </div>
-            <div class="modal-footer bg-light">
-                <!-- <span class="sub-text">Modal Footer Text</span> -->
-                <div class="form-group">
-                    <button type="submit" class="btn btn-lg btn-primary" data-dismiss="modal">Kembali</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="modal fade" id="detailTrx" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -298,33 +208,25 @@
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 No. Referensi
                             </div>
-                            <div>
-                                k2828292nn
-                            </div>
+                            <div id="referensi"></div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Produk
                             </div>
-                            <div>
-                                XLD150
-                            </div>
+                            <div id="produk"></div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Nomor Tujuan
                             </div>
-                            <div>
-                                0288729992
-                            </div>
+                            <div id="nomor"></div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Nomor Serial
                             </div>
-                            <div>
-                                XXX
-                            </div>
+                            <div id="serial"></div>
                         </div>
                     </div>
                     <div>
@@ -332,33 +234,27 @@
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Transaksi ID
                             </div>
-                            <div>
-                                11182777829
-                            </div>
+                            <div id="transaksi"></div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Deskripsi
                             </div>
-                            <div>
-                                XL Data 1 5gb 30hr
-                            </div>
+                            <div id="deskripsi"></div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Status
                             </div>
                             <div>
-                                gagal
+                                <span class="badge badge-success" id="status" style="color:white"></span>
                             </div>
                         </div>
                         <div class="pt-2">
                             <div style="color: #d8d8d8; font-size: smaller;">
                                 Tanggal Transaksi
                             </div>
-                            <div>
-                                23 Januari 2021
-                            </div>
+                            <div id="tgl"></div>
                         </div>
                     </div>
                 </div>
@@ -380,9 +276,7 @@
                     <div>
                         Biaya Transaksi
                     </div>
-                    <div>
-                        17.000
-                    </div>
+                    <div id="biaya"></div>
                 </div>
                 <div>
                     <hr style="border: solid #d8d8d8 1px;">
@@ -391,11 +285,10 @@
                     <div>
                         Total
                     </div>
-                    <div>
-                        17.000
-                    </div>
+                    <div id="total"></div>
                 </div>
             </div>
+            <br />
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button>
             </div>
