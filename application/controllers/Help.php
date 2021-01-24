@@ -11,7 +11,15 @@ class Help extends CI_Controller{
     }
 
     function terms_policy(){     
-        $this->load->view('page/term_policy');    
+        redirect("Help/terms_condition");    
+    }
+
+    function terms_condition(){     
+        $this->load->view('page/term_condition');    
+    }
+
+    function privacy_policy(){     
+        $this->load->view('page/privacy_policy');    
     }
 }
 ?>

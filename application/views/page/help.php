@@ -6,15 +6,14 @@
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <meta name="description" content="Aplikasi Jual Pulsa dan Paket Data termurah">
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets_custom/pavicon.png">
     <!-- Page Title  -->
     <title>Bantuan | GetId - Aplikasi Jual Pulsa dan Paket Data termurah</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dashlite.css?ver=1.9.2">
-    <link id="skin-default" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/theme.css?ver=1.9.2">
+    <link id="skin" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/theme.css?ver=1.9.2">
 </head>
 
 <body class="nk-body npc-invest bg-lighter ">
@@ -327,9 +326,12 @@
                         <div class="nk-footer-links">
                             <ul class="nav nav-sm">
                                 <li class="nav-item"><a class="nav-link"
-                                        href="<?php echo site_url('Help/terms_policy');?>">Persyaratan dan Ketentuan</a>
+                                        href="<?php echo site_url('Help/terms_condition');?>">Persyaratan dan
+                                        Ketentuan</a>
                                 </li>
-                                <!-- <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li> -->
+                                <li class="nav-item"><a class="nav-link"
+                                        href="<?php echo site_url('Help/privacy_policy');?>">Kebijakan Privasi</a>
+                                </li>
                                 <li class="nav-item"><a class="nav-link"
                                         href="<?php echo site_url('Help');?>">Bantuan</a></li>
                             </ul>
