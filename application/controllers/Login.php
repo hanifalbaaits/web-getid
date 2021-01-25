@@ -235,8 +235,8 @@ class Login extends CI_Controller {
         $fullname = $this->input->post('name');
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        var_dump($fullname);var_dump($email);var_dump($password);
-        exit;
+        // var_dump($fullname);var_dump($email);var_dump($password);
+        // exit;
         $respon = $this->APIGetid->register($email,$password);
         // var_dump($respon);
         if ($respon == null) {
@@ -262,7 +262,7 @@ class Login extends CI_Controller {
                 if ($respon1 == null) {
                     $array=array('status' => '0','message' => 'Register Gagal.');
                     $this->session->set_flashdata('message', $array);
-                    // redirect('Login/register');
+                    redirect('Login/register');
                 } else {
                     $dt = $respon1[0]->Response;
                     $dtx = explode("|",$dt); //0|succed
@@ -295,14 +295,14 @@ class Login extends CI_Controller {
                     } else {
                         $array=array('status' => '0','message' => 'Register Gagal.');
                         $this->session->set_flashdata('message', $array);
-                        // redirect('Login/register');
+                        redirect('Login/register');
                     }
                 }
 
             } else {
                 $array=array('status' => '0','message' => 'Email Sudah digunakan');
                 $this->session->set_flashdata('message', $array);
-                // redirect('Login/register');
+                redirect('Login/register');
             }
         } 
     }
