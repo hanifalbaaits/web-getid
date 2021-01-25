@@ -68,8 +68,7 @@
                             onclick="myFunction(this)" class="fas fa-eye clk"></i>
                     </div>
                     <div class="d-flex align-items-center">
-                        <input class="mr-1" style="width: fit-content;" id="checkbox-1" name="checkbox-1"
-                            type="checkbox">
+                        <input class="mr-1" style="width: fit-content;" id="checkbox" name="checkbox-1" type="checkbox">
                         <label class="mb-0" for="checkbox-1" style="font-size: 12px;">
                             Saya Setuju dengan
                             <a class="create" tabindex="-1" href="<?php echo site_url('Help/terms_policy');?>">Syarat
